@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+var dust = require('../bin/dust');
+
+var operatingSystem = operatingSystem();
+var osVersion = dust.shell.exec("sw_vers -productVersion", {silent:dust.silent}).output;
+var dustVersion = '0.2.0 (2013-03-31)';
+
+exports.operatingSystem = operatingSystem
+exports.osVersion = osVersion;
+exports.dustVersion = dustVersion;
+
+
+function operatingSystem(){
+   // Check which platform we are working with
+    var operatingSystem = process.platform;
+    switch (operatingSystem) {
+    case 'linux':
+      operatingSystem = 'Linux';
+      break;
+    case 'darwin':
+      operatingSystem = 'Mac';
+    break;
+      //match(/^win/) == Windows Platform, we default to it
+    default:
+      operatingSystem = 'Windows';
+    break;
+    }
+
+return operatingSystem
+
+}

@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+var dust = require('../bin/dust');
+
+// require modules to startup 'dust'
+dust.config.mod = require("../mods/" + dust.config.activeMod + '/config/mod.json');
+
+require("../mods/" + dust.config.activeMod + '/lib/dust_text');
+
+/* Initial Message */
+dust.shell.exec("clear");
+
+if (dust.config.dustLogo === true) {
+    dust.text.dustLogo();
+}
+dust.text.welcomeMessage(dust.env.operatingSystem+ " " + dust.env.osVersion, dust.env.dustVersion);
+
+
+// modded tests
+require("../mods/" + dust.config.activeMod + '/lib/dust_test');
+
+// modded setup
+require("../mods/" + dust.config.activeMod + '/lib/dust_setup');
+
+// modded commands
+require("../mods/" + dust.config.activeMod + '/lib/dust_cmd');
+
+dust.cmd.parse(process.argv);
+
+
+
+

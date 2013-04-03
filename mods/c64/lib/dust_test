@@ -1,0 +1,102 @@
+#!/usr/bin/env node
+var dust = require('../../../bin/dust');
+
+dust.test.modDependencies = function modDependencies(){
+    console.log("Tools which are installed and configured by 'dust'");
+    console.log("--------------------------------------------------");
+    dust.color.reset();
+
+    dust.shell.which('acme') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("ACME 6502 Cross Compiler");
+
+    dust.shell.test('-e', '/Applications/Vice64/x64.app') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("Vice64 C64 Emulator");
+
+    dust.shell.test('-e', '/usr/local/bin/assemble_6502') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("6502 build script invoked from shell or IDE");
+
+    dust.shell.test('-e', '/usr/local/bin/tokenize_basic') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("BASIC build script invoked from shell or IDE");
+
+    dust.shell.test('-e', '/usr/local/bin/sidreloc') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("Sidreloc is a tool to relocate SIDs in memory");
+
+    dust.shell.test('-e', '/usr/local/bin/pucrunch') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("PuCrunch is a packer for your compiled 6502 programs");
+
+    dust.shell.test('-e', '/usr/local/bin/petcat') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("Petcat converts between ASCII and PETSCII Format");
+
+    dust.shell.test('-e', '/usr/local/bin/exobasic') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("Exobasic builds and optionally packs BASIC programs");
+
+    dust.color.reset();
+    dust.color.bold();
+    console.log("");
+    console.log("Optional tools which 'dust' offers to install and to configure");
+    console.log("--------------------------------------------------------------");
+    dust.color.reset();
+
+    dust.shell.test('-e', '/Applications/Sublime Text 2.app') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("Sublime Text 2 - the popular editor for Mac OSX");
+
+    dust.shell.test('-d', process.env['HOME'] + "/Library/Application Support/Sublime Text 2/Packages/6502asm.tmbundle") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("6502 Syntax Highlighting for Sublime Text 2");
+
+    dust.shell.test('-e', process.env['HOME'] + "/Library/Application Support/Sublime Text 2/Packages/User/6502 Assembly (DASM).sublime-settings") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("6502 Syntax Highlighting Configuration for Sublime Text 2");
+
+    dust.shell.test('-e', process.env['HOME'] + "/Library/Application Support/Sublime Text 2/Packages/User/C64-6502.sublime-build") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("6502 Build System for Sublime Text 2");
+
+    dust.shell.test('-d', process.env['HOME'] + "/Library/Application Support/Sublime Text 2/Packages/asp.vb.net.tmbundle") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("BASIC Highlighting for Sublime Text 2");
+
+    dust.shell.test('-e', process.env['HOME'] + "/Library/Application Support/Sublime Text 2/Packages/User/ASP.sublime-settings") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("BASIC Syntax Highlighting Configuration for Sublime Text 2");
+
+    dust.shell.test('-e', process.env['HOME'] + "/Library/Application Support/Sublime Text 2/Packages/User/C64-BASIC.sublime-build") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("BASIC Build System for Sublime Text 2");
+
+    dust.shell.test('-e', '/usr/local/bin/sublime') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("a terminal shortcut that launches Sublime Text 2");
+
+    dust.shell.test('-e', '/Applications/Wine.app') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("Wine emulates Win32 programs on Mac OSX");
+
+    dust.shell.test('-e', '/Applications/WineBottler.app') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("WineBottler is a GUI for Wine");
+
+    dust.shell.test('-d', process.env['HOME'] + "/Wine Files/drive_c/Program Files/CharPad 1.8") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("CharPad 1.8 Win32 Character Editor");
+
+    dust.shell.test('-d', process.env['HOME'] + "/Wine Files/drive_c/Program Files/SpritePad 1.8") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("SpritePad 1.8 Win32 Sprite Editor");
+
+    dust.shell.test('-d', process.env['HOME'] + "/Desktop/Win32 Apps") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("Shortcut on Desktop to Win32 Apps directory");
+
+    dust.color.reset();
+    console.log("");
+}

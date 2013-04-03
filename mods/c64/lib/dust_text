@@ -1,0 +1,71 @@
+#!/usr/bin/env node
+var dust = require('../../../bin/dust');
+
+dust.text.displayOutroText = function displayOutroText(){
+    console.log("");
+    console.log("#######################################################");
+    console.log("#                                                     #");
+    console.log("#     Installation is completed! Congratulations!     #");
+    console.log("#                                                     #");
+    console.log("#    use 'dust test' to check installation status.    #");
+    console.log("#                                                     #");
+    console.log("# type 'dust --help' for  examples on using 'dust'    #");
+    console.log("#                                                     #");
+    console.log("# check http://dustlayer.com for indepth tutorials!   #");
+    console.log("#######################################################");
+    console.log("");
+}
+
+
+dust.text.modTagline = function modTagLine(){
+    console.log("Visit http://dustlayer.com for C64 Tutorials");
+}
+
+
+dust.text.displayInstallationHelp = function(){
+    console.log("");
+    console.log("'dust' needs a few command line tools installed to work properly."); 
+    console.log("Also cross-development for C64 without the emulator Vice");
+    console.log("does not make much sense, so this must be installed as well and"); 
+    console.log("properly linked to 'dust'. 'dust setup' will take of this.");
+    console.log("");
+    console.log("Unless you dont want to 'dust' will install some great tools to make ");
+    console.log("C64 development more fun - notable the following:");
+    console.log("");
+    console.log("'Sublime Text 2' is an awesome editor which will");
+    console.log("not only be installed but also configured for C64 development with Syntax Highlighting");
+    console.log("and build systems to compile and run 6502 and BASIC code on a keypress");
+    console.log("If you skip the installation because you already have 'Sublime Text 2'installed, ");
+    console.log("'dust' will add the requirement build systems and syntax highlighting ");
+    console.log("to your existing installation.");
+    console.log("");
+    console.log("There are also not any viable program ons Mac to work with C64 graphics, sprites "); 
+    console.log("and character sets. To provide this, 'dust' will install 'Wine' which can run");
+    console.log("Windows Applications on your Mac. Together with Wine a few standard C64-related ");
+    console.log("Windows applications are installed and configured.");
+    console.log("");
+    console.log("Note that all configuration files of previously installed tools are not modified,");
+    console.log("so running the setup routine again to update software or add new tools is fine.");
+    console.log("");
+    console.log("Change to your cloned tools directory and type 'dust setup' to choose your");
+    console.log("prefered installation.");
+    console.log("");
+
+};
+
+dust.text.displayInstallationRequirements = function(){
+    console.log("To setup utilities and make everything in 'dust' work, the following must be in place:");
+    console.log("");
+    console.log("'XCode' to install gcc compiler and other useful command line tools.");
+    console.log("'git' to clone the tools repository and the tutorial source codes");
+    console.log("");
+    console.log("More information is available in the introduction to 'dust' on http://dustlayer.com");
+    console.log("");
+};
+
+dust.text.modHelp = function(){
+  console.log('    $ dust create asm my_asm : create new ASM project in "my_asm"' );
+  console.log('    $ dust create basic my_basic : create new BASIC project in "my_basic"' );
+  console.log('    $ dust compile : looks for index.a or index.asm, compiles and runs it');
+  console.log('    $ dust compile /myproject/source.asm : compiles and runs given file');
+}

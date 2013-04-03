@@ -1,0 +1,65 @@
+#!/usr/bin/env node
+var dust = require('../bin/dust');
+
+exports.list = function(){ 
+    dust.github.getJSON(dust.config.mods[dust.config.activeMod].tutorialsIdentifier,function (res){
+        formatTutorialsList(res);
+    }); 
+};
+
+
+
+exports.download = function downloadTutorial(id){
+    dust.github.getJSON(dust.config.mods[dust.config.activeMod].tutorialsIdentifier,function (res){
+        for (var i = 0, iLen = res.length; i < iLen; i++) {
+          if(i == parseInt(id, 10)){
+            console.log(res[i].description);
+            if (dust.shell.test('-d',res[i].name)){
+                console.log("Deleting previous download")
+                dust.shell.exec('rm -rf ' + res[i].name);
+            }
+            dust.shell.exec("git clone " + res[i].git_url);
+            dust.shell.exec("rm -rf " + res[i].name + '/.git');
+            dust.color.reset();
+            process.stdout.write("Tutorial: " );
+            console.log(res[i].homepage);
+            dust.color.reset();
+            dust.shell.exit(0);
+          }
+        }
+        console.log("Tutorial with id #" + id + " not found!");
+        dust.shell.exit(1);
+    }); 
+}
+
+function formatTutorialsList(data){
+        console.log("-----------------------------------------------------");
+    for (var i = 0, iLen = data.length; i < iLen; i++) {
+        
+        var formattedName = formatName(data[i].name);
+
+        dust.color.bold();
+        console.log(padNumber(i,3,'0') + " " + formattedName + " by " + data[i].owner);
+        dust.color.reset();
+        console.log("Description: " + data[i].description);
+        console.log("Indepth Info: " + data[i].homepage);
+        console.log("-----------------------------------------------------");
+        dust.color.reset();
+    }
+    dust.color.yellow().bold();
+    console.log("you can download any tutorial code with the command: ");
+    console.log("             dust tutorials download <id>            ");
+    console.log("After the download a link with online help is shown! ");
+    dust.color.reset();
+}
+
+function padNumber(n, width, z) {
+  z = z || '0';
+  n = n + '';
+  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
+
+function formatName(repositoryName){
+   var strippedName = repositoryName.match(new RegExp(dust.config.mods[dust.config.activeMod].tutorialsIdentifier + '-[0-9]{3}-(.*)','i'));
+   return strippedName = strippedName[1].replace(/-/g, ' ');
+}

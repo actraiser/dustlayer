@@ -1,0 +1,74 @@
+#!/usr/bin/env node
+
+
+/************************************
+*                                   *
+*  main binary - sets up defaults   *
+*                                   *
+*************************************/
+
+var silent = true;
+exports.silent = silent;
+
+var fs = require('fs');
+exports.fs = fs;
+
+var shell = require('shelljs');
+exports.shell = shell;
+
+// Create config for the first time if it does not exist
+if (!shell.test("-e", process.env['HOME'] + '/.dust.json')){
+    console.log("creating default config file in ~/.dust.json");
+    var path = process.env['HOME'] + "/.dust.json";
+    shell.cp("./config/defaults.json", path);
+}
+var config = require(process.env['HOME'] + '/.dust.json');
+
+exports.config = config;
+
+
+
+var cmd = require('commander');
+exports.cmd = cmd;
+require('../lib/dust_cmd');
+
+var env = require('../lib/dust_env');
+exports.env = env;
+
+var text = require('../lib/dust_text');
+exports.text = text;
+
+var ansi = require('ansi');
+var color = ansi(process.stdout);
+exports.color = color;
+
+var test = require('../lib/dust_test');
+exports.test = test;
+
+var setup = require('../lib/dust_setup');
+exports.setup = setup;
+
+var github = require('../lib/dust_github');
+exports.github = github;
+
+var tutorials = require('../lib/dust_tutorials');
+exports.tutorials = tutorials;
+
+var externals = require('../lib/dust_externals')
+exports.externals = externals;
+
+
+/* booting 'dust' */
+require('../lib/dust_boot');
+
+
+
+ 
+
+
+
+
+
+
+
+

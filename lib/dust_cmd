@@ -1,0 +1,157 @@
+#!/usr/bin/env node
+var dust = require('../bin/dust');
+
+/**************************************
+*     default commands                *
+***************************************/
+
+dust.cmd
+    .version('0.2.0')
+    .usage('<command> [arguments]');
+
+// set Mode
+dust.cmd
+  .command('mod <modding>')
+  .description("switch modding for 'dust', default: 'c64'")
+  .action(function(){
+    setMod(dust.cmd.args);
+  });
+
+
+// set Mode
+dust.cmd
+  .command('mods')
+  .description("show list of available mods")
+  .action(function(){
+    listMods();
+  });
+
+
+
+
+// clone tools repository 
+dust.cmd
+  .command('clone')
+  .description('clones the bundled tools repository for the selected mod')
+  .action(function(){
+    clone();
+  });
+
+// setup tools
+dust.cmd
+  .command('setup [help]')
+  .description('setups bundled tools or displays information on the setup')
+  .action(function(args){
+    if (args === undefined){
+      setup();
+    }
+    else{
+      switch(args){
+        case "help":
+         dust.text.displayInstallationHelp();
+          break;
+        case "requirements":
+         dust.text.displayInstallationRequirements();
+        break;
+        default:
+          dust.color.red().bold();
+          console.log('accepted setup arguments: help, requirements');
+          console.log('');
+          dust.color.reset();
+      }
+    dust.shell.exit(0);
+    }
+  });
+
+
+// test setup
+dust.cmd
+  .command('test')
+  .description('check if everything is installed properly')
+  .action(function(){
+    dust.test.all();
+  });
+
+
+// tutorials list and download
+dust.cmd
+  .command('tutorials [download] [id]')
+  .description('list and download tutorials')
+  .action(function(){
+    tutorials(dust.cmd.args);
+  });
+
+// custom help examples
+dust.cmd.on('--help', function(){
+  dust.text.defaultHelp();
+  dust.text.modHelp();
+  console.log('');
+  dust.color.reset();
+});
+
+/**************************************
+*       default command functions     *
+***************************************/
+
+function setup(){
+  dust.setup.compatibilityCheck();
+  eval("dust.setup.install." + dust.env.operatingSystem.toLowerCase() + ".options();");
+}
+
+function clone(){
+  dust.setup.compatibilityCheck();
+  eval("dust.setup.clone." + dust.env.operatingSystem.toLowerCase() + "();");
+}
+
+
+function setMod(mod){
+
+  for (key in dust.config.mods) {
+    if (key == mod){
+      console.log("setting mod to " + mod);
+      var path = process.env['HOME'] + "/.dust.json";
+      var modifiedConfig = require(process.env['HOME'] + "/.dust.json");
+      modifiedConfig.activeMod = mod.toString();
+      delete modifiedConfig.mod;
+      dust.fs.writeFileSync(path, JSON.stringify(modifiedConfig, null, 4));
+      dust.shell.exit(0);
+    }
+  }
+  dust.test.fail('System not supported.');
+  console.log("");
+  console.log("");
+  listMods();
+  dust.shell.exit(0);
+}
+
+function listMods(){
+  console.log("Supported mods:")
+  dust.color.bold();
+  for (key in dust.config.mods) {
+    console.log(dust.config.mods[key].systemName + ': ' +  key );
+  }
+  dust.color.reset();
+  console.log("");
+  console.log("switch mod with 'dust mod <identifier>'");
+  console.log("");
+  dust.shell.exit(0);
+}
+
+function tutorials(args){
+ if (!dust.shell.which('git')) {
+  dust.color.red().bold();
+  console.log ("git not set up correctly, please install git");
+  dust.color.reset();
+  dust.shell.exit(1);
+ } 
+  if (args.length > 0){
+     console.log('Downloading Tutorial #' + args[1] );
+     dust.tutorials.download(args[1]);
+  }
+  else{
+  console.log('Downloading Tutorials Index' );
+    dust.tutorials.list();
+  }
+}
+
+

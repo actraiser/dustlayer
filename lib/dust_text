@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+var dust = require('../bin/dust');
+
+
+exports.dustLogo = function dustLogo(){
+    dust.color.bold();
+    console.log("");
+    console.log("________                  __   __                             ");
+    console.log("\\______ \\  __ __  _______/  |_|  | _____  ___.__. ___________ ");
+    console.log(" |    |  \\|  |  \\/  ___/\\   __\\  | \\__  \\<   |  |/ __ \\_  __ \\");
+    console.log(" |    `   \\  |  /\\___ \\  |  | |  |__/ __ \\\\___  \\  ___/|  | \\/");
+    console.log("/_______  /____//____  > |__| |____(____  / ____|\\___  >__|   ");
+    console.log("        \\/           \\/                 \\/\\/         \\/       ");
+    console.log("");
+    dust.color.reset();
+}
+
+exports.welcomeMessage = function welcomeMessage(os,version){
+    console.log("Welcome to Dust (c) actraiser/Dustlayer - v" + version + " on " + os);
+    dust.color.yellow(); 
+    dust.color.bold();
+    console.log("Use dust --help for command overview and examples (active mod: " + dust.config.activeMod + ")");
+    dust.color.reset();
+    dust.text.modTagline();
+    console.log("");
+}
+
+exports.modTagline = function modTagLine(){
+    console.log("Visit http://dustlayer.com");
+}
+
+// custom help examples
+exports.defaultHelp = function(){
+  console.log('  Examples:');
+  console.log('');
+  console.log('    $ dust clone : clones the dustlayer tools repository');
+  console.log('    $ dust setup help : information on what setup does');
+  console.log('    $ dust mods : list moddings for dust');
+  console.log('    $ dust mod dust-mod-c64 : switch to c64 modding');
+  console.log('    $ dust setup : setups tools from the cloned repository');
+  console.log('    $ dust test : checks the system if required tools are installed');
+  console.log('    $ dust tutorials : list avaialble tutorials for download');
+  console.log('    $ dust tutorials download 1 : download tutorial #1');
+}

@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+var dust = require('../bin/dust');
+
+var GitHubApi = require("github");
+var github = new GitHubApi({
+    version: "3.0.0",
+    timeout: 5000
+});
+
+exports.getJSON = function(keyword,callback){
+    github.repos.getFromUser({
+     "user": "actraiser",
+     "keyword": keyword,
+     "type": "owner",
+     "sort": "full_name",
+     "order": "asc"
+    }, function(err, res) {
+        var jsonObj = [];
+        for (var i = 0, iLen = res.length; i < iLen; i++) {
+              if (res[i].name.match(keyword,'g')){
+              jsonObj.push({
+                id: res[i].id, 
+                name: res[i].name,
+                description: res[i].description,
+                created_at: res[i].created_at,
+                homepage: res[i].homepage,
+                git_url: res[i].git_url,
+                owner: res[i].owner.login
+                });
+            };
+        }
+        callback(jsonObj);
+    });
+
+}

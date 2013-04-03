@@ -1,0 +1,120 @@
+{
+    "about": {
+        "name": "c64",
+        "author": "actraiser/Dustlayer",
+        "contact": "acrtraiser@dustlayer.com",
+        "website": "http://www.dustlayer.com",
+        "description": "C64 cross development and tutorials"
+    },
+    "support": {
+        "mac": true,
+        "linux": false,
+        "windows": false
+    },
+    "setup": {
+        "mac": {
+            "preBundleUrl": "https://github.com/actraiser/dust-bundle-c64-mac.git",
+            "preBundleList": {
+                "acme" : {
+                    "directory": "tools/Acme 0.94.4/src",
+                    "installer": "installAcme"
+                },
+                "exomizer" : {
+                    "directory": "tools/Exomizer 2.0.6/src",
+                    "installer": "installExomizer"
+                },
+                "pucrunch" : {
+                    "directory": "tools/pucrunch 8.3.2002",
+                    "installer": "installPuCrunch"
+                },
+                "sidreloc" : {
+                    "directory": "tools/Sidreloc 1.0",
+                    "installer": "installSidreloc"
+                },
+                "installCompileScripts" : {
+                    "directory": "compileScripts",
+                    "installer": "installCompileScripts"
+                }
+            },
+            "externals": {
+                "sublime": {
+                    "name": "Sublime Text 2 v2.0.1 (Text Editor)",
+                    "downloads": ["http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1.dmg",
+                                  "https://www.dropbox.com/s/941yqzlgub88cth/Sublime%20Text%202.0.1.dmg"],
+                    "filename": "Sublime Text 2.0.1.dmg",
+                    "installer": "installSublimeText",
+                    "postinstaller": "postInstallSublimeText",
+                    "directory": "configurationSublime"
+                },
+                "vice": {
+                    "name": "Vice v2.4 (C64 Emulator)",
+                    "downloads": ["http://sourceforge.net/projects/vice-emu/files/releases/binaries/macosx/vice-macosx-cocoa-i386+x86_64-10.6-gcc42-2.4.dmg/download",
+                                  "https://www.dropbox.com/s/jiepb1ngr17gq2j/vice-macosx-cocoa-i386%2Bx86_64-10.6-gcc42-2.4.dmg"],
+                    "filename": "vice-macosx-cocoa-i386+x86_64-10.6-gcc42-2.4.dmg",
+                    "installer": "installVice"
+                },
+                "winebottler": {
+                    "name": "WineBottler v1.2.5 (Win32 Emulator)",
+                    "downloads": ["http://mirrors.nolabelstudios.com/mikesmassivemess/files/WineBottlerCombo_1.2.5.dmg",
+                                  "https://www.dropbox.com/s/myia7xtp9u5oje0/WineBottlerCombo_1.2.5.dmg"],
+                    "filename": "WineBottlerCombo_1.2.5.dmg",
+                    "installer": "installWineBottler",
+                    "postinstaller": "postInstallWineBottler",
+                    "directory": "Win32"
+
+                }
+
+            },
+            "installOptions": {
+                "all": {
+                    "description" : "Install everything",
+                    "list": {
+                        "acme": true,
+                        "exomizer": true,
+                        "pucrunch": true,
+                        "sidreloc": true,
+                        "sublime": true,
+                        "vice": true,
+                        "winebottler": true
+                    }
+                },
+                "skip_sublime": {
+                    "description" : "Install everything but Sublime Text 2",
+                    "list": {
+                        "acme": true,
+                        "exomizer": true,
+                        "pucrunch": true,
+                        "sidreloc": true,
+                        "sublime": false,
+                        "vice": true,
+                        "winebottler": true
+                    }
+                },
+                "skip_wine": {
+                    "description" : "Install everything but WineBottler",
+                    "list": {
+                        "acme": true,
+                        "exomizer": true,
+                        "pucrunch": true,
+                        "sidreloc": true,
+                        "sublime": true,
+                        "vice": true,
+                        "winebottler": false
+                    }
+                },
+                "skip_sublime_and_wine": {
+                    "description" : "Install without Sublime Text 2 or WineBottler",
+                    "list": {
+                        "acme": true,
+                        "exomizer": true,
+                        "pucrunch": true,
+                        "sidreloc": true,
+                        "sublime": false,
+                        "vice": true,
+                        "winebottler": false
+                    }
+                }
+            }
+        }
+    }
+}

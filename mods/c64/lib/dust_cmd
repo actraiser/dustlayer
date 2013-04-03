@@ -1,0 +1,77 @@
+#!/usr/bin/env node
+var dust = require('../../../bin/dust');
+
+
+// create skeletons for ASM or BASIC projects
+dust.cmd
+  .command('create <type> <projectname>')
+  .description('create new ASM or BASIC project')
+  .action(function(){
+    createTemplate(dust.cmd.args);
+  });
+
+
+
+// compile ASM 
+dust.cmd
+  .command('compile [path]')
+  .description('assemble dust.cmd, create c64 executable and run it')
+  .action(function(){
+    compile(dust.cmd.args);
+  });
+
+
+
+/**************************************
+*     function to exec                *
+***************************************/
+
+function createTemplate(args){
+  dust.color.green();
+  console.log('Creating new ' + args[0] + ' template in ' + args[1]);
+  dust.color.reset();
+  dust.templates.create(args);
+}
+
+
+
+function compile(args){
+ if (!test('-e', '/usr/local/bin/assemble_6502')) {
+  dust.color.red().bold();
+  console.log ("assembler not set up correctly, please do dust setup");
+  dust.color.reset();
+  dust.shell.exit(1);
+ } 
+
+ if (args[0] === undefined){
+   path = process.env['PWD'];
+
+     if (test('-e', path + '/index.a')) {
+      console.log('index.a found - assembling 6502 code.');
+       dust.shell.exec("/usr/local/bin/assemble_6502 " + "\"" + path + "/index.a\"");
+      dust.shell.exit(0);
+    }
+
+    if (test('-e', path + '/index.asm')) {
+        console.log('index.asm found - assembling 6502 code.');
+        dust.shell.exec("/usr/local/bin/assemble_6502 " + "\"" + path + "/index.asm\"");
+     dust.shell.exit(0);
+     }
+   dust.color.red().bold();
+   console.log("Did not find any index.a or index.asm file to compile");
+   dust.color.reset();
+   dust.shell.exit(1);
+ }
+
+    if (!test('-e', args[0])) {
+        console.log('given file does not exist.');
+     dust.shell.exit(1);
+     } else {
+         path = process.env['PWD'];
+         if (args[0].match(process.env['PWD'])){
+            path = ""; 
+         }
+         dust.shell.exec("/usr/local/bin/assemble_6502 " + "\"" + path + "/" + args[0] + "\"");
+          dust.shell.exit(0);
+     }
+}

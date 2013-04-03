@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+var dust = require('../bin/dust');
+
+/*
+var externalConfig = dust.config.externals
+
+// overwrite to display progress bar
+exports.config = externalConfig;
+*/
+
+exports.download = function download(os, link, filename, silent){
+	dust.color.bold();
+	process.stdout.write('downloading ');
+	console.log("");
+	dust.shell.exec('curl --progress-bar -L -o "$HOME/temp_dust_compile/' + filename + '" "' + link + '"' , {silent: false});
+	dust.color.reset();
+	console.log("");
+}

@@ -1,0 +1,41 @@
+{
+  "name": "dustlayer",
+  "preferGlobal": true,
+  "version": "0.2.0",
+  "homepage": "http://dustlayer.com",
+  "author": "actraiser <actraiser@dustlayer.com>",
+  "description": "command line suite for new and experienced retro programmers. Check homepage for details.",
+  "main": "./bin/dust",
+  "bin": "./bin/dust",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/actraiser/dust.git"
+  },
+  "bugs": {
+    "url" : "https://github.com/actraiser/dust/issues",
+    "email" : "actraiser@dustlayer.com"
+    },
+  "keywords": [
+    "cli",
+    "c64",
+    "programming",
+    "setup"
+  ],
+    "preferGlobal": true,
+  "dependencies" : {
+    "shelljs"   : ">=0.1.2",
+    "commander" : ">=0.1.0",
+    "github" : ">=0.1.8",
+    "ansi": ">=0.1.2"
+  },
+  "analyze": false,
+  "bundledDependencies": [
+    "union",
+    "ecstatic"
+  ],  
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.8"
+  },
+  "os" : [ "darwin" ]
+}

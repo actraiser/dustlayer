@@ -1,0 +1,49 @@
+#!/usr/bin/env node
+var dust = require('../bin/dust');
+
+exports.okay = function(text){
+    dust.color.green();
+    dust.color.bold();
+    process.stdout.write(text);
+    dust.color.reset();
+}
+
+exports.fail = function(text){
+    dust.color.red();
+    dust.color.bold();
+    process.stdout.write(text);
+    dust.color.reset();
+}
+
+
+exports.all = function (){
+    dust.test.defaults();
+    dust.test.modDependencies();
+}
+
+exports.defaults = function defaults(){
+    console.log("Testing which tools used by 'dust' are installed on your system.");
+    console.log("This is a good way to check if 'dust setup' has worked properly.");
+    console.log("");
+    dust.color.bold();
+    console.log("Tools required on this machine before 'dust' can be used");
+    console.log("--------------------------------------------------------");
+    dust.color.reset();
+    dust.shell.which('gcc') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("gcc is required to compile various sources");
+    dust.shell.which('git') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("git fetches tutorials and tools from the Dustlayer Repository");
+    dust.shell.which('node') ? dust.test.okay('[installed] ') : dust.test.fail('[not found]');
+    dust.color.yellow();
+    console.log("node.js is the framework 'dust' is build on");
+    dust.color.reset();
+    console.log("");
+}
+
+exports.modDependencies = function modDependencies(){
+    return;
+}
+
+

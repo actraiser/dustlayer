@@ -1,0 +1,40 @@
+#!/usr/bin/env node
+var dust = require('../bin/dust');
+
+
+exports.compatibilityCheck = function(){
+ if (dust.config.mod.support.mac === false){
+    dust.color.red();
+    console.log("operating system not supported:");
+    process.stdout.write("Supported systems: ");
+    console.log(dust.config.mod.support);
+    dust.color.reset();
+    dust.shell.exit(1);
+  }
+
+}
+
+exports.installStatus = function(success){
+    if (success === true){
+        dust.color.bold();
+        console.log('-> completed!')
+        dust.color.reset();
+    }
+    else{
+        
+        dust.color.red();
+        dust.color.bold();
+        console.log('-> failed!')
+        dust.color.reset();
+    }
+}
+
+
+exports.removeTemporaryDirectory = function(){
+    process.stdout.write('removing temporary directory ');
+    if (dust.shell.test("-d", dust.shell.env['HOME'] + "/temp_dust_compile")){
+	    dust.shell.exec('rm -rf "$HOME/temp_dust_compile"', {silent:dust.silent});
+	}
+	dust.setup.installStatus(true);
+}
+
