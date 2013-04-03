@@ -24,24 +24,21 @@ This first version installs and configures the tool chain and helps you to kicks
 		- Auto-Start in Vice via BASIC loader
 - Advanced Vice integration
 	- Labels export to Vice Monitor at Build time
-- C64 Project Skeletons
-	- Generate new ASM or BASIC project from Skeletons
+	- Compile and Run in Vice from Editor
+- C64 Coding Tutorials
+	- Generate new ASM or BASIC project from Tutorials Database
 		- Preconfigured Projects with BASIC Loader
 		- Follows Dustlayer project layout
 			- Runs and Compiles without modifications
-			- Tutorials on dustlayer.com follow the layout conventions
 
 ## Installation ##
 
 Install node.js from [nodejs.org](http://nodejs.org/download/) for your operating system. Then install *dust* via the node package manager
 
-	sudo npm install -g dust
+	sudo npm install -g dustlayer
 
-Then you are good to go, typical you want to clone the tools, set them up and start a first project.
+Then you are good to go, typical you want to setup the tools:
 
-	cd ~
-	dust clone
-	cd dust-osx-setup
 	dust setup
 
 	[... once this is done ...]
@@ -49,28 +46,22 @@ Then you are good to go, typical you want to clone the tools, set them up and st
 	dust test # shows if everything is in place
 
 
- Then create for example a new 6502 ASM project into the directory myFirstProject. You can choose from preconfigured skeletons which are listed when you execute the command. 
+ Download a tutorial to check if your setup works: 
 
  	cd ~
-	dust create asm myProject # creates a new asm project from a template
+	dust tutorials # shows a list of available projects for download
 
-	cd myProject
+	dust tutorials download 2 # downloads the ASM Interrupt project
+	# cd into the directory and run dust compile	
 	dust compile # compiles the C64 code and runs it in the C64 Emulator
 
+or open the project in Sublime first and build from context menu 
+
+ 	# cd into the directory 
+ 	sublime .
+
+Then hit CMD-B - if nothing happens, you need to select one time the appropriate build system in Tools->Build System->C64-6502, then hit again CMD-B
 
 Checkout http://dustlayer.com for tutorials and an indepth explanation how all that stuff works.
 
-From time to time the tool repository is upgraded with new versions or additional tools. The following commands will update your dust executable and the cloned repository. Aftewards you can restart the installation progress.
-
-	cd ~/dust-osx-setup
-	dust update
-	dust setup # updates everything or installs whats missing
-
-## Next Features ## 
-
-- Compatibility Windows/Linux
-- Tighter integration with Vice/Debugging
-- More skeletons to choose from
-- Additional tools to ease C64 development
-
-
+-act/Dustlayer
