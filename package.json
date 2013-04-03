@@ -23,10 +23,10 @@
   ],
     "preferGlobal": true,
   "dependencies" : {
-    "shelljs"   : ">=0.1.2",
-    "commander" : ">=0.1.0",
-    "github" : ">=0.1.8",
-    "ansi": ">=0.1.2"
+    "shelljs"   : "0.1.2",
+    "commander" : "0.1.0",
+    "github" : "0.1.8",
+    "ansi": "0.1.2"
   },
   "analyze": false,
   "bundledDependencies": [
