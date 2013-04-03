@@ -5,6 +5,11 @@
 Dustlayer WHQ: http://dustlayer.com
 Contact: actraiser@dustlayer.com
 
+## Warning Pre-Release Information #
+
+Dust is part of a bigger project consisting of a blog with coding tutorials and various projects. It will take some more days to get the blog et al up and running. You can use dust already today to setup the dev environment and download very basic example project though. Blog should be available sometimes in April 2013.
+
+
 ## Synopsis ##
 
 Dust ist a node.js driven versatile command line suite for new and experienced C64 programmers on Mac OSX. 
