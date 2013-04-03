@@ -30,11 +30,6 @@
     "github" : "0.1.8",
     "ansi": "0.1.2"
   },
-  "analyze": false,
-  "bundledDependencies": [
-    "union",
-    "ecstatic"
-  ],  
   "license": "MIT",
   "engines": {
     "node": ">=0.8"
