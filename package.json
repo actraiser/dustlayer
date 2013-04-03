@@ -6,7 +6,9 @@
   "author": "actraiser <actraiser@dustlayer.com>",
   "description": "command line suite for new and experienced retro programmers. Check homepage for details.",
   "main": "./bin/dust",
-  "bin": "./bin/dust",
+  "bin": {
+    "dust": "./bin/dust"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/actraiser/dust.git"

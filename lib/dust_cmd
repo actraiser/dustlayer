@@ -138,6 +138,12 @@ function listMods(){
 }
 
 function tutorials(args){
+      if (args.length > 0){
+          console.log('len:');
+          console.log(args.length);        
+      }
+      console.log(args);
+
  if (!dust.shell.which('git')) {
   dust.color.red().bold();
   console.log ("git not set up correctly, please install git");
