@@ -11,10 +11,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/actraiser/dust.git"
+    "url": "https://github.com/actraiser/dustlayer.git"
   },
   "bugs": {
-    "url" : "https://github.com/actraiser/dust/issues",
+    "url" : "https://github.com/actraiser/dustlayer/issues",
     "email" : "actraiser@dustlayer.com"
     },
   "keywords": [
