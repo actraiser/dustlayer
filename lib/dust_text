@@ -35,8 +35,6 @@ exports.defaultHelp = function(){
   console.log('');
   console.log('    $ dust clone : clones the dustlayer tools repository');
   console.log('    $ dust setup help : information on what setup does');
-  console.log('    $ dust mods : list moddings for dust');
-  console.log('    $ dust mod dust-mod-c64 : switch to c64 modding');
   console.log('    $ dust setup : setups tools from the cloned repository');
   console.log('    $ dust test : checks the system if required tools are installed');
   console.log('    $ dust tutorials : list avaialble tutorials for download');

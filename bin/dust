@@ -16,13 +16,17 @@ exports.fs = fs;
 var shell = require('shelljs');
 exports.shell = shell;
 
-// Create config for the first time if it does not exist
-if (!shell.test("-e", process.env['HOME'] + '/.dust.json')){
-    console.log("creating default config file in ~/.dust.json");
-    var path = process.env['HOME'] + "/.dust.json";
-    shell.cp("./config/defaults.json", path);
+
+var config = {
+	"activeMod" : "c64",
+	"dustLogo": true,
+    "mods": {
+        "c64": {
+            "systemName": "Commodore C64",
+            "tutorialsIdentifier": "dust-tutorial-c64"
+            }
+    }
 }
-var config = require(process.env['HOME'] + '/.dust.json');
 
 exports.config = config;
 
