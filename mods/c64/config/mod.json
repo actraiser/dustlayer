@@ -15,6 +15,10 @@
         "mac": {
             "preBundleUrl": "https://github.com/actraiser/dust-bundle-c64-mac.git",
             "preBundleList": {
+                "buildscripts" : {
+                    "directory": "compileScripts",
+                    "installer": "installCompileScripts"
+                },
                 "acme" : {
                     "directory": "tools/Acme 0.94.4/src",
                     "installer": "installAcme"
@@ -30,10 +34,6 @@
                 "sidreloc" : {
                     "directory": "tools/Sidreloc 1.0",
                     "installer": "installSidreloc"
-                },
-                "installCompileScripts" : {
-                    "directory": "compileScripts",
-                    "installer": "installCompileScripts"
                 }
             },
             "externals": {
@@ -70,6 +70,7 @@
                     "description" : "Install everything",
                     "list": {
                         "acme": true,
+                        "buildscripts": true,
                         "exomizer": true,
                         "pucrunch": true,
                         "sidreloc": true,
@@ -82,6 +83,7 @@
                     "description" : "Install everything but Sublime Text 2",
                     "list": {
                         "acme": true,
+                        "buildscripts": true,
                         "exomizer": true,
                         "pucrunch": true,
                         "sidreloc": true,
@@ -94,6 +96,7 @@
                     "description" : "Install everything but WineBottler",
                     "list": {
                         "acme": true,
+                        "buildscripts": true,
                         "exomizer": true,
                         "pucrunch": true,
                         "sidreloc": true,
@@ -106,6 +109,7 @@
                     "description" : "Install without Sublime Text 2 or WineBottler",
                     "list": {
                         "acme": true,
+                        "buildscripts": true,
                         "exomizer": true,
                         "pucrunch": true,
                         "sidreloc": true,

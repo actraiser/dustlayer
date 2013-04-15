@@ -168,12 +168,11 @@ function installSidreloc(workdir,bundledir){
 }
 
 function installCompileScripts(workdir,bundledir){
-    process.stdout.write('installing Sidreloc ');
+    process.stdout.write('installing build scripts for 6502 and BASIC ');
     dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/" + bundledir, {silent:dust.silent});
     dust.shell.cd(workdir);
-    process.stdout.write('installing build scripts for 6502 and BASIC ');
-    dust.shell.exec('sudo cp -v "$PWD/scripts/assemble_6502" "/usr/local/bin"', {silent:dust.silent});
-    dust.shell.exec('sudo cp -v "$PWD/scripts/tokenize_basic" "/usr/local/bin"', {silent:dust.silent});
+    dust.shell.exec('sudo cp -v "assemble_6502" "/usr/local/bin"', {silent:dust.silent});
+    dust.shell.exec('sudo cp -v "tokenize_basic" "/usr/local/bin"', {silent:dust.silent});
     dust.setup.installStatus(true);
 }
 
