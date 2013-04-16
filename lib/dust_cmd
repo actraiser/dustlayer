@@ -77,11 +77,15 @@ dust.cmd
 
 // tutorials list and download
 dust.cmd
-  .command('tutorials [download] [id]')
+  .command('tutorials')
   .description('list and download tutorials')
   .action(function(){
-    tutorials(dust.cmd.args);
+    tutorials();
   });
+
+
+
+
 
 // custom help examples
 dust.cmd.on('--help', function(){
@@ -140,21 +144,15 @@ function listMods(){
   dust.shell.exit(0);
 }
 
-function tutorials(args){
- if (!dust.shell.which('git')) {
+function tutorials(){
+  if (!dust.shell.which('git')) {
   dust.color.red().bold();
   console.log ("git not set up correctly, please install git");
   dust.color.reset();
   dust.shell.exit(1);
  } 
-  if (args.length > 0){
-     console.log('Downloading Tutorial #' + args[1] );
-     dust.tutorials.download(args[1]);
-  }
-  else{
-  console.log('Downloading Tutorials Index' );
-    dust.tutorials.list();
-  }
+  console.log('Listing available Tutorial Code' );
+  dust.tutorials.list();
 }
 
 

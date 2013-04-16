@@ -7,7 +7,7 @@ dust.config.mod = require("../mods/" + dust.config.activeMod + '/config/mod.json
 require("../mods/" + dust.config.activeMod + '/lib/dust_text');
 
 /* Initial Message */
-//dust.shell.exec("clear");
+dust.shell.exec("clear");
 
 if (dust.config.dustLogo === true) {
     dust.text.dustLogo();

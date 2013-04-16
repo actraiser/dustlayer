@@ -1,62 +1,53 @@
 #!/usr/bin/env node
 var dust = require('../bin/dust');
-
 exports.list = function(){ 
-    dust.github.getJSON(dust.config.mods[dust.config.activeMod].tutorialsIdentifier,function (res){
+    dust.github.getJSON(dust.config.mods[dust.config.activeMod].tutorialsIdentifier, function (res){
         formatTutorialsList(res);
     }); 
 };
 
+exports.create = function downloadTutorial(repo){
+    if (dust.shell.test('-d',repo)){
+        console.log("Deleting previous download")
+        dust.shell.exec('rm -rf ' + repo);
+    }
+    dust.shell.exec("git clone https://github.com/actraiser/" + repo + '.git ');
+    dust.shell.exec("rm -rf " + repo + '/.git');
+    dust.color.reset();
+    dust.shell.exit(0);
+    console.log("Tutorial with id #" + id + " not found!");
+    dust.shell.exit(1);
+}
 
-
-exports.download = function downloadTutorial(id){
-    dust.github.getJSON(dust.config.mods[dust.config.activeMod].tutorialsIdentifier,function (res){
-        for (var i = 0, iLen = res.length; i < iLen; i++) {
-          if(i == parseInt(id, 10)){
-            console.log(res[i].description);
-            if (dust.shell.test('-d',res[i].name)){
-                console.log("Deleting previous download")
-                dust.shell.exec('rm -rf ' + res[i].name);
-            }
-            dust.shell.exec("git clone " + res[i].git_url);
-            dust.shell.exec("rm -rf " + res[i].name + '/.git');
-            dust.color.reset();
-            process.stdout.write("Tutorial: " );
-            console.log(res[i].homepage);
-            dust.color.reset();
-            dust.shell.exit(0);
-          }
-        }
-        console.log("Tutorial with id #" + id + " not found!");
-        dust.shell.exit(1);
-    }); 
+function downloadTutorial(repo){
+    console.log("downloading from repo " + repo);
+    dust.tutorials.create(repo);
 }
 
 function formatTutorialsList(data){
+        var list = new Array();
         console.log("-----------------------------------------------------");
     for (var i = 0, iLen = data.length; i < iLen; i++) {
-        
         var formattedName = formatName(data[i].name);
-
         dust.color.bold();
-        console.log(padNumber(i,3,'0') + " " + formattedName + " by " + data[i].owner);
+        console.log(formattedName + " by " + data[i].owner);
+        list.push(formattedName);
         dust.color.reset();
-        console.log("Description: " + data[i].description);
-        console.log("Indepth Info: " + data[i].homepage);
+        console.log(data[i].description);
+        console.log("Tutorial: " + data[i].homepage);
         console.log("-----------------------------------------------------");
         dust.color.reset();
     }
     dust.color.yellow().bold();
-    console.log("you can download any tutorial code with the command: ");
-    console.log("             dust tutorials download <id>            ");
-    console.log("After the download a link with online help is shown! ");
-    dust.color.reset();
-}
+    console.log("Please choose which tutorial code to download: ");
 
-function padNumber(n, width, z) {
-  z = z || '0';
-  n = n + '';
-  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+
+    dust.cmd.choose(list, function(i){
+        console.log('you chose "%s"', i, list[i]);
+        downloadTutorial(data[i].name);
+    });
+
+    dust.color.reset();
 }
 
 function formatName(repositoryName){
