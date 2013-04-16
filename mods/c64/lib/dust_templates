@@ -7,9 +7,9 @@ dust.templates.list = function(target){
 };
 
 dust.templates.create = function downloadTemplate(repo,target){
-    if (dust.shell.test('-d',repo)){
+    if (dust.shell.test('-d',target)){
         console.log("Deleting previous download")
-        dust.shell.exec('rm -rf ' + repo);
+        dust.shell.exec('rm -rf ' + target);
     }
     dust.shell.exec("git clone https://github.com/actraiser/" + repo + '.git ' + target);
     dust.shell.exec("rm -rf " + repo + '/.git');
