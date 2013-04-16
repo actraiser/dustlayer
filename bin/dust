@@ -23,7 +23,8 @@ var config = {
     "mods": {
         "c64": {
             "systemName": "Commodore C64",
-            "tutorialsIdentifier": "dust-tutorial-c64"
+            "tutorialsIdentifier": "dust-tutorial-c64",
+            "templatesIdentifier": "dust-template-c64"
             }
     }
 }
@@ -60,6 +61,9 @@ exports.tutorials = tutorials;
 
 var externals = require('../lib/dust_externals')
 exports.externals = externals;
+
+var templates = require('../lib/dust_templates')
+exports.templates = templates;
 
 
 /* booting 'dust' */

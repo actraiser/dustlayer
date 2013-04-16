@@ -4,10 +4,10 @@ var dust = require('../../../bin/dust');
 
 // create skeletons for ASM or BASIC projects
 dust.cmd
-  .command('create <type> <projectname>')
-  .description('create new ASM or BASIC project')
+  .command('create <directory>')
+  .description('create a new project from template into a directory')
   .action(function(){
-    createTemplate(dust.cmd.args);
+    createFromTemplate(dust.cmd.args);
   });
 
 
@@ -25,15 +25,6 @@ dust.cmd
 /**************************************
 *     function to exec                *
 ***************************************/
-
-function createTemplate(args){
-  dust.color.green();
-  console.log('Creating new ' + args[0] + ' template in ' + args[1]);
-  dust.color.reset();
-  dust.templates.create(args);
-}
-
-
 
 function compile(args){
  if (!dust.shell.test('-e', '/usr/local/bin/assemble_6502')) {
@@ -74,4 +65,17 @@ function compile(args){
          dust.shell.exec("/usr/local/bin/assemble_6502 " + "\"" + path + "/" + args[0] + "\"");
           dust.shell.exit(0);
      }
+}
+
+function createFromTemplate(args){
+  if (!dust.shell.which('git')) {
+  dust.color.red().bold();
+  console.log ("git not set up correctly, please install git");
+  dust.color.reset();
+  dust.shell.exit(1);
+ } 
+ if (args.length > 0){
+     console.log('Listing available Templates' );
+     dust.templates.list(args[0]);
+ }
 }

@@ -1,0 +1,55 @@
+#!/usr/bin/env node
+var dust = require('../../../bin/dust');
+dust.templates.list = function(target){ 
+    dust.github.getJSON(dust.config.mods[dust.config.activeMod].templatesIdentifier, function (res){
+        formatTemplatesList(res,target);
+    }); 
+};
+
+dust.templates.create = function downloadTemplate(repo,target){
+    if (dust.shell.test('-d',repo)){
+        console.log("Deleting previous download")
+        dust.shell.exec('rm -rf ' + repo);
+    }
+    dust.shell.exec("git clone https://github.com/actraiser/" + repo + '.git ' + target);
+    dust.shell.exec("rm -rf " + repo + '/.git');
+    dust.color.reset();
+    dust.shell.exit(0);
+    console.log("Template with id #" + id + " not found!");
+    dust.shell.exit(1);
+}
+
+function downloadTemplate(repo, target){
+    console.log("downloading from repo " + repo + " into directory '" + target + "'");
+    dust.templates.create(repo,target);
+}
+
+function formatTemplatesList(data,target){
+        var list = new Array();
+        console.log("-----------------------------------------------------");
+    for (var i = 0, iLen = data.length; i < iLen; i++) {
+        var formattedName = formatName(data[i].name);
+        dust.color.bold();
+        console.log(formattedName + " by " + data[i].owner);
+        list.push(formattedName);
+        dust.color.reset();
+        console.log(data[i].description);
+        console.log("-----------------------------------------------------");
+        dust.color.reset();
+    }
+    dust.color.yellow().bold();
+    console.log("Please choose which template to download: ");
+
+
+    dust.cmd.choose(list, function(i){
+        console.log('you chose "%s"', i, list[i]);
+        downloadTemplate(data[i].name, target);
+    });
+
+    dust.color.reset();
+}
+
+function formatName(repositoryName){
+   var strippedName = repositoryName.match(new RegExp(dust.config.mods[dust.config.activeMod].templatesIdentifier + '-[0-9]{3}-(.*)','i'));
+   return strippedName = strippedName[1].replace(/-/g, ' ');
+}

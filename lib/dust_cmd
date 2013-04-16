@@ -6,7 +6,7 @@ var dust = require('../bin/dust');
 ***************************************/
 
 dust.cmd
-    .version('0.4.0')
+    .version('0.4.2')
     .usage('<command> [arguments]');
 
 /*
@@ -26,7 +26,7 @@ dust.cmd
   .action(function(){
     listMods();
   });
-*/
+
 
 
 
@@ -37,6 +37,7 @@ dust.cmd
   .action(function(){
     clone();
   });
+*/
 
 // setup tools
 dust.cmd
@@ -99,11 +100,12 @@ function setup(){
   eval("dust.setup.install." + dust.env.operatingSystem.toLowerCase() + ".options();");
 }
 
+/*
 function clone(){
   dust.setup.compatibilityCheck();
   eval("dust.setup.clone." + dust.env.operatingSystem.toLowerCase() + "();");
 }
-
+*/
 
 function setMod(mod){
 
