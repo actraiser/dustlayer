@@ -37,6 +37,5 @@ exports.defaultHelp = function(){
   console.log('    $ dust setup help : information on what setup does');
   console.log('    $ dust setup : setups tools from the cloned repository');
   console.log('    $ dust test : checks the system if required tools are installed');
-  console.log('    $ dust tutorials : list avaialble tutorials for download');
-  console.log('    $ dust tutorials download 1 : download tutorial #1');
+  console.log('    $ dust tutorials : list and download tutorial code');
 }
