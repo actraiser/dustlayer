@@ -64,7 +64,7 @@ dust.text.displayInstallationRequirements = function(){
 };
 
 dust.text.modHelp = function(){
-  console.log('    $ dust create directory : create new C64 project from template into specified directory');
+  console.log('    $ dust create <directory> : create new C64 project from template into specified directory');
   console.log('    $ dust compile : looks for index.a or index.asm, compiles and runs it');
   console.log('    $ dust compile /myproject/source.asm : compiles and runs given file');
 }

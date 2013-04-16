@@ -1,7 +1,7 @@
 {
   "name": "dustlayer",
   "preferGlobal": true,
-  "version": "0.4.2",
+  "version": "0.4.3",
   "homepage": "http://dustlayer.com",
   "author": "actraiser <actraiser@dustlayer.com>",
   "description": "command line suite for new and experienced retro programmers. Check homepage for details.",
