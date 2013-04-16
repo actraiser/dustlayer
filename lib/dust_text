@@ -33,7 +33,6 @@ exports.modTagline = function modTagLine(){
 exports.defaultHelp = function(){
   console.log('  Examples:');
   console.log('');
-  console.log('    $ dust clone : clones the dustlayer tools repository');
   console.log('    $ dust setup help : information on what setup does');
   console.log('    $ dust setup : setups tools from the cloned repository');
   console.log('    $ dust test : checks the system if required tools are installed');

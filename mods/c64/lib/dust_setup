@@ -253,7 +253,7 @@ function postInstallWineBottler(workdir,bundledir){
 
         dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/" + bundledir, {silent:dust.silent});
         dust.shell.cd(workdir);
-        dust.shell.exec("open 'SpritePad 1.8/SpritePad.exe'"); 
+        dust.shell.exec("/Applications/WineBottler.app/Contents/MacOS/WineBottler 'SpritePad 1.8/SpritePad.exe'"); 
 
         waitForDirectory();
 
