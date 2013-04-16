@@ -51,6 +51,8 @@ function formatTutorialsList(data){
 }
 
 function formatName(repositoryName){
-   var strippedName = repositoryName.match(new RegExp(dust.config.mods[dust.config.activeMod].tutorialsIdentifier + '-[0-9]{3}-(.*)','i'));
-   return strippedName = strippedName[1].replace(/-/g, ' ');
+   var strippedName = repositoryName.match(new RegExp(dust.config.mods[dust.config.activeMod].tutorialsIdentifier + '-','i'));
+   strippedName = repositoryName.replace(strippedName[0], '');
+   strippedName = strippedName.replace(/-/g, ' ');
+   return strippedName;
 }
