@@ -77,26 +77,6 @@ dust.test.modDependencies = function modDependencies(){
     dust.color.yellow();
     console.log("a terminal shortcut that launches Sublime Text 2");
 
-    dust.shell.test('-e', '/Applications/Wine.app') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
-    dust.color.yellow();
-    console.log("Wine emulates Win32 programs on Mac OSX");
-
-    dust.shell.test('-e', '/Applications/WineBottler.app') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
-    dust.color.yellow();
-    console.log("WineBottler is a GUI for Wine");
-
-    dust.shell.test('-d', process.env['HOME'] + "/Wine Files/drive_c/Program Files/CharPad 1.8") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
-    dust.color.yellow();
-    console.log("CharPad 1.8 Win32 Character Editor");
-
-    dust.shell.test('-d', process.env['HOME'] + "/Wine Files/drive_c/Program Files/SpritePad 1.8") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
-    dust.color.yellow();
-    console.log("SpritePad 1.8 Win32 Sprite Editor");
-
-    dust.shell.test('-d', process.env['HOME'] + "/Desktop/Win32 Apps") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
-    dust.color.yellow();
-    console.log("Shortcut on Desktop to Win32 Apps directory");
-
     dust.color.reset();
     console.log("");
 }

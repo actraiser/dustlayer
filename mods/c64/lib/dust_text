@@ -9,7 +9,7 @@ dust.text.displayOutroText = function displayOutroText(){
     console.log("#                                                     #");
     console.log("#    use 'dust test' to check installation status.    #");
     console.log("#                                                     #");
-    console.log("# type 'dust --help' for  examples on using 'dust'    #");
+    console.log("# type 'dust --help' for  examples on using DUST      #");
     console.log("#                                                     #");
     console.log("# check http://dustlayer.com for indepth tutorials!   #");
     console.log("#######################################################");
@@ -24,25 +24,20 @@ dust.text.modTagline = function modTagLine(){
 
 dust.text.displayInstallationHelp = function(){
     console.log("");
-    console.log("'dust' needs a few command line tools installed to work properly."); 
+    console.log("DUST needs a few command line tools installed to work properly."); 
     console.log("Also cross-development for C64 without the emulator Vice");
     console.log("does not make much sense, so this must be installed as well and"); 
-    console.log("properly linked to 'dust'. 'dust setup' will take of this.");
+    console.log("properly linked to DUST. 'dust setup' will take of this.");
     console.log("");
-    console.log("Unless you dont want to 'dust' will install some great tools to make ");
+    console.log("Unless you dont want to DUST will install some great tools to make ");
     console.log("C64 development more fun - notable the following:");
     console.log("");
     console.log("'Sublime Text 2' is an awesome editor which will");
     console.log("not only be installed but also configured for C64 development with Syntax Highlighting");
     console.log("and build systems to compile and run 6502 and BASIC code on a keypress");
     console.log("If you skip the installation because you already have 'Sublime Text 2'installed, ");
-    console.log("'dust' will add the requirement build systems and syntax highlighting ");
+    console.log("DUST will add the requirement build systems and syntax highlighting ");
     console.log("to your existing installation.");
-    console.log("");
-    console.log("There are also not any viable program ons Mac to work with C64 graphics, sprites "); 
-    console.log("and character sets. To provide this, 'dust' will install 'Wine' which can run");
-    console.log("Windows Applications on your Mac. Together with Wine a few standard C64-related ");
-    console.log("Windows applications are installed and configured.");
     console.log("");
     console.log("Note that all configuration files of previously installed tools are not modified,");
     console.log("so running the setup routine again to update software or add new tools is fine.");
@@ -54,12 +49,12 @@ dust.text.displayInstallationHelp = function(){
 };
 
 dust.text.displayInstallationRequirements = function(){
-    console.log("To setup utilities and make everything in 'dust' work, the following must be in place:");
+    console.log("To setup utilities and make everything in DUST work, the following must be in place:");
     console.log("");
     console.log("'XCode' to install gcc compiler and other useful command line tools.");
     console.log("'git' to clone the tools repository and the tutorial source codes");
     console.log("");
-    console.log("More information is available in the introduction to 'dust' on http://dustlayer.com");
+    console.log("More information is available in the introduction to DUST on http://dustlayer.com");
     console.log("");
 };
 

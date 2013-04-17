@@ -6,7 +6,7 @@ var dust = require('../bin/dust');
 ***************************************/
 
 dust.cmd
-    .version('0.4.6')
+    .version('0.5.0')
     .usage('<command> [arguments]');
 
 /*

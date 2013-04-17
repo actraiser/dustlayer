@@ -52,16 +52,6 @@
                                   "https://www.dropbox.com/s/jiepb1ngr17gq2j/vice-macosx-cocoa-i386%2Bx86_64-10.6-gcc42-2.4.dmg"],
                     "filename": "vice-macosx-cocoa-i386+x86_64-10.6-gcc42-2.4.dmg",
                     "installer": "installVice"
-                },
-                "winebottler": {
-                    "name": "WineBottler v1.2.5 (Win32 Emulator)",
-                    "downloads": ["http://mirrors.nolabelstudios.com/mikesmassivemess/files/WineBottlerCombo_1.2.5.dmg",
-                                  "https://www.dropbox.com/s/myia7xtp9u5oje0/WineBottlerCombo_1.2.5.dmg"],
-                    "filename": "WineBottlerCombo_1.2.5.dmg",
-                    "installer": "installWineBottler",
-                    "postinstaller": "postInstallWineBottler",
-                    "directory": "Win32"
-
                 }
 
             },
@@ -75,8 +65,7 @@
                         "pucrunch": true,
                         "sidreloc": true,
                         "sublime": true,
-                        "vice": true,
-                        "winebottler": true
+                        "vice": true
                     }
                 },
                 "skip_sublime": {
@@ -88,34 +77,7 @@
                         "pucrunch": true,
                         "sidreloc": true,
                         "sublime": false,
-                        "vice": true,
-                        "winebottler": true
-                    }
-                },
-                "skip_wine": {
-                    "description" : "Install everything but WineBottler",
-                    "list": {
-                        "acme": true,
-                        "buildscripts": true,
-                        "exomizer": true,
-                        "pucrunch": true,
-                        "sidreloc": true,
-                        "sublime": true,
-                        "vice": true,
-                        "winebottler": false
-                    }
-                },
-                "skip_sublime_and_wine": {
-                    "description" : "Install without Sublime Text 2 or WineBottler",
-                    "list": {
-                        "acme": true,
-                        "buildscripts": true,
-                        "exomizer": true,
-                        "pucrunch": true,
-                        "sidreloc": true,
-                        "sublime": false,
-                        "vice": true,
-                        "winebottler": false
+                        "vice": true
                     }
                 }
             }
