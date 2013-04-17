@@ -51,9 +51,7 @@ Then you are good to go, typical you want to setup the tools:
  Download a tutorial to check if your setup works: 
 
  	cd ~
-	dust tutorials # shows a list of available projects for download
-
-	dust tutorials download 2 # downloads the ASM Interrupt project
+	dust tutorials # list tutorial code and select one for download
 	# cd into the directory and run dust compile	
 	dust compile # compiles the C64 code and runs it in the C64 Emulator
 
