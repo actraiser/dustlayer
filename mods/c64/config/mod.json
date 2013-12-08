@@ -20,7 +20,7 @@
                     "installer": "installCompileScripts"
                 },
                 "acme" : {
-                    "directory": "tools/Acme 0.94.4/src",
+                    "directory": "tools/Acme 0.94.5/src",
                     "installer": "installAcme"
                 },
                 "exomizer" : {
