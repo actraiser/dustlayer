@@ -1,0 +1,237 @@
+#!/usr/bin/env node
+var dust = require('../../../bin/dust');
+var savePWD = process.env['HOME'];
+
+dust.setup.clone = {
+    "mac": function(){
+        cloneMac();    
+    }
+}
+
+
+dust.setup.install = {
+    "mac": {
+       "options": function(){
+            showOptionsMac();
+        },
+        "run": function(){
+            runInstallMac();
+        }    
+    }
+}
+
+
+/* installation start */
+function runInstallMac(configKey){
+    var start = new Date().getTime();
+
+    // github location of a package of software prebundled for this mod
+    preBundleUrl = dust.config.mod.setup.mac.preBundleUrl;
+    // list of software prebundled
+    preBundleList = dust.config.mod.setup.mac.preBundleList;
+    // list of software downloaded from external sites
+    externalsList = dust.config.mod.setup.mac.externals;
+
+    // selected installation configuration (includes prebundled and external software)
+    selectedInstallOptions = dust.config.mod.setup.mac.installOptions[configKey].list;
+
+    // Create Temp Directory to work in
+    dust.shell.exec('mkdir "$HOME/temp_dust_compile"', {silent:dust.silent});
+    dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile", {silent:dust.silent});
+    regex = /.*\/(.*).git$/
+    preBundleDirectory = regex.exec(preBundleUrl)[1];
+
+    // rm existing clone
+    dust.shell.rm('-rf', preBundleDirectory);
+    // clone repository
+    dust.shell.exec('git clone --progress ' + preBundleUrl);
+
+    if (dust.shell.test('-d', dust.shell.env['HOME'] + "/temp_dust_compile/" + preBundleDirectory) === false){
+        dust.test.fail("git clone failed - did you enter your password correctly?");
+        console.log("");
+        dust.shell.exit(1);
+    }
+
+    dust.shell.cd(preBundleDirectory);
+    dust.shell.rm('-rf', '.git');
+
+    dust.color.bold();
+    console.log("");
+    console.log("Enter Sudo password if required to create system directories and copy binaries.");
+    console.log("");
+    dust.color.reset();
+
+
+    // all binaries go to /usr/local/bin - create if it does not exist
+    dust.shell.exec('sudo mkdir -p "/usr/local/bin"', {silent:dust.silent});
+
+    // install prebundled Software
+    for (var key in selectedInstallOptions){
+       if (selectedInstallOptions[key] === true){
+            // check if this is a prebundled or external software
+            if (dust.config.mod.setup.mac.preBundleList[key] != undefined){
+                eval(preBundleList[key]['installer'] + "('" + preBundleList[key]['directory'] + "','" + preBundleDirectory + "');");
+            }
+            else if (dust.config.mod.setup.mac.externals[key] != undefined){
+                eval(externalsList[key]['installer'] + "('" + externalsList[key]['filename'] + "');");
+                if (externalsList[key]['postinstaller'] != undefined) {
+                    eval(externalsList[key]['postinstaller'] + "('" + externalsList[key]['directory'] + "','" + preBundleDirectory + "');");
+                }
+            }
+            else{
+                dust.test.fail("Error: " + key + " not found in the configuration file.");
+            }
+       }
+       else {
+            console.log('skipping ' + key + ' installation');
+       }
+    }
+
+    dust.setup.removeTemporaryDirectory();
+
+    dust.text.displayOutroText();
+    var end = new Date().getTime();
+    var time = end - start;
+    console.log("");
+    dust.color.bold();
+    console.log('Execution time: ' + parseInt(time/1000) + ' seconds');
+    dust.color.reset();
+    console.log("");
+    dust.shell.exit(0)
+}
+
+
+function showOptionsMac(){
+    combinations = eval("dust.config.mod.setup." + dust.env.operatingSystem.toLowerCase() + ".installOptions");
+       options = [];
+       i=1;
+       dust.color.bold();
+       for (var key in combinations) {
+            options[i] = [];
+            options[i]['key'] = key;
+            options[i]['description'] = combinations[key]['description'];
+            console.log(i+". " + options[i]['description']); 
+            i++;        
+        }
+
+    dust.cmd.prompt('Choice: ', function(choice){
+        choice = parseInt(choice);
+
+        if (choice>i || choice < 1 || isNaN(choice) ){
+            dust.test.fail('Choice out of range - please retry');
+            console.log("");
+            showOptionsMac();
+            return;
+        }
+        console.log('You have chosen option #%d "%s"', choice, options[choice]['description']);
+        dust.color.reset();
+        runInstallMac(options[choice]['key']);
+    });
+
+}
+
+function installPceas(workdir,bundledir){
+    console.log("PCEAS Installer TODO");
+    return;
+    process.stdout.write('installing acme ');
+    dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/" + bundledir, {silent:dust.silent});
+    dust.shell.cd(workdir);
+    dust.shell.exec('make', {silent:dust.silent});
+    dust.shell.exec('sudo make install', {silent:dust.silent});
+    dust.setup.installStatus(true);
+}
+
+
+
+function installCompileScripts(workdir,bundledir){
+    console.log("CompileScripts Installer TODO");
+    return;
+    process.stdout.write('installing build scripts for 6502 and BASIC ');
+    dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/" + bundledir, {silent:dust.silent});
+    dust.shell.cd(workdir);
+    dust.shell.exec('sudo cp -v "assemble_6502" "/usr/local/bin"', {silent:dust.silent});
+    dust.shell.exec('sudo cp -v "tokenize_basic" "/usr/local/bin"', {silent:dust.silent});
+    dust.setup.installStatus(true);
+}
+
+function installSublimeText(filename){
+    console.log("Install sublime Todo");
+    return;
+
+    process.stdout.write('installing Sublime Text 2 ');
+    dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/", {silent:dust.silent});
+    dust.externals.download('mac', dust.config.mod.setup.mac.externals.sublime.downloads[0], filename,true);
+    process.stdout.write('installing ');
+
+    dust.shell.exec('hdiutil attach "$HOME/temp_dust_compile/' + filename +'"', {silent:dust.silent});
+    dust.shell.exec('cp -R -v "/Volumes/Sublime Text 2/Sublime Text 2.app" "/Volumes/Sublime Text 2/Applications"', {silent:dust.silent});
+    dust.shell.exec('hdiutil detach "/Volumes/Sublime Text 2"', {silent:dust.silent});
+    dust.setup.installStatus(true);
+}
+
+function postInstallSublimeText(workdir,bundledir){
+    console.log("Post Install sublime Todo");
+    return;
+
+        process.stdout.write("Copying Sublime Text 2 Configuration ");
+    if (dust.shell.test("-d", "/Applications/Sublime Text 2.app")){
+        dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/" + bundledir, {silent:dust.silent});
+        dust.shell.cd(workdir);
+        dust.shell.exec('sudo mv -v "Sublime Text 2/sublime" "/usr/local/bin"', {silent:dust.silent});
+        dust.shell.exec('mkdir -p "$HOME/Library/Application Support/Sublime Text 2/Packages"', {silent:dust.silent});
+        dust.shell.exec('cp -R -v "Sublime Text 2/" "$HOME/Library/Application Support/Sublime Text 2/Packages"', {silent:dust.silent}); 
+        dust.setup.installStatus(true);
+    }
+    else {
+        dust.color.yellow();
+        console.log("sublime not available - no build systems were configured");
+        dust.color.reset();
+    }
+}
+
+function installMagicEngine(filename){
+    console.log("Magic Engine Installer TODO");
+    return;
+
+    process.stdout.write('installing Sublime Text 2 ');
+    dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/", {silent:dust.silent});
+    dust.externals.download('mac', dust.config.mod.setup.mac.externals.sublime.downloads[0], filename,true);
+    process.stdout.write('installing ');
+
+    dust.shell.exec('hdiutil attach "$HOME/temp_dust_compile/' + filename +'"', {silent:dust.silent});
+    dust.shell.exec('cp -R -v "/Volumes/Sublime Text 2/Sublime Text 2.app" "/Volumes/Sublime Text 2/Applications"', {silent:dust.silent});
+    dust.shell.exec('hdiutil detach "/Volumes/Sublime Text 2"', {silent:dust.silent});
+    dust.setup.installStatus(true);
+}
+
+
+function cloneMac(){
+        console.log("Clone Install Repo TODO");
+    return;
+
+  console.log ("");
+  console.log("Cloning Repository - this may take a while.");
+  console.log ("");
+
+  if (dust.shell.exec('which git').code !== 0){
+    dust.color.red();
+    dust.color.bold();
+    console.log('git command not found - have you installed git?');
+    console.log('download it at http://git-scm.com/downloads')
+    console.log("More information on setup requirements with 'dust setup requirements")
+    dust.color.reset();
+    dust.shell.exit(0);
+  }
+
+
+  if (dust.shell.exec('git clone --verbose https://github.com/actraiser/dust-setup-osx.git').code === 0) {
+    dust.color.green();
+    console.log('Cloning Repository succeeded');
+    console.log("Change to 'dust-setup-osx' directory and run 'dust setup'");
+    dust.color.reset();
+    dust.shell.exit(1);
+  } else {
+    console.log("there was a problem cloning the repository - please try to clone again!");
+    dust.shell.exit(1);
+  }
+}
