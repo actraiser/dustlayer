@@ -15,7 +15,7 @@ dust.cmd
   .command('mod <modding>')
   .description("switch modding for 'dust', default: 'c64'")
   .action(function(){
-    setMod(dust.cmd.args);
+    setMod(dust.cmd.args[0]);
   });
 
 
