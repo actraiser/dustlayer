@@ -16,16 +16,24 @@ exports.fs = fs;
 var shell = require('shelljs');
 exports.shell = shell;
 
+activeMod = require(process.env['HOME'] + "/.dust.json").activeMod;
+
 
 var config = {
-	"activeMod" : "c64",
+	"activeMod" : activeMod,
 	"dustLogo": true,
     "mods": {
         "c64": {
             "systemName": "Commodore C64",
             "tutorialsIdentifier": "dust-tutorial-c64",
             "templatesIdentifier": "dust-template-c64"
+            },
+        "pce": {
+            "systemName": "PC-Engine/TurboGrafx",
+            "tutorialsIdentifier": "dust-tutorial-pce",
+            "templatesIdentifier": "dust-template-pce"
             }
+
     }
 }
 
@@ -64,6 +72,8 @@ exports.externals = externals;
 
 var templates = require('../lib/dust_templates')
 exports.templates = templates;
+
+/* Set Mod */
 
 
 /* booting 'dust' */

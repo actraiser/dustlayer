@@ -6,10 +6,10 @@ var dust = require('../bin/dust');
 ***************************************/
 
 dust.cmd
-    .version('0.5.1')
+    .version('0.6.0')
     .usage('<command> [arguments]');
 
-/*
+
 // set Mode
 dust.cmd
   .command('mod <modding>')
@@ -28,7 +28,7 @@ dust.cmd
   });
 
 
-
+/*
 
 // clone tools repository 
 dust.cmd
@@ -121,6 +121,9 @@ function setMod(mod){
       modifiedConfig.activeMod = mod.toString();
       delete modifiedConfig.mod;
       dust.fs.writeFileSync(path, JSON.stringify(modifiedConfig, null, 4));
+      // calls dust again to show the proper info on the active mod
+      console.log("restarting dust to reflect changes...");
+      dust.shell.exec('dust');
       dust.shell.exit(0);
     }
   }
