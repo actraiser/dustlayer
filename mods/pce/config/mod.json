@@ -1,0 +1,66 @@
+{
+    "about": {
+        "name": "PC-Engine",
+        "author": "actraiser/Dustlayer",
+        "contact": "acrtraiser@dustlayer.com",
+        "website": "http://www.dustlayer.com",
+        "description": "PC-Engine cross development and tutorials"
+    },
+    "support": {
+        "mac": true,
+        "linux": false,
+        "windows": false
+    },
+    "setup": {
+        "mac": {
+            "preBundleUrl": "https://github.com/actraiser/dust-bundle-pce-mac.git",
+            "preBundleList": {
+                "buildscripts" : {
+                    "directory": "compileScripts",
+                    "installer": "installCompileScripts"
+                },
+                "pceas" : {
+                    "directory": "<todo>",
+                    "installer": "installPceas"
+                }
+            },
+            "externals": {
+                "sublime": {
+                    "name": "Sublime Text 2 v2.0.1 (Text Editor)",
+                    "downloads": ["http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1.dmg",
+                                  "https://www.dropbox.com/s/941yqzlgub88cth/Sublime%20Text%202.0.1.dmg"],
+                    "filename": "Sublime Text 2.0.1.dmg",
+                    "installer": "installSublimeText",
+                    "postinstaller": "postInstallSublimeText",
+                    "directory": "configurationSublime"
+                },
+                "magicengine": {
+                    "name": "Magic Engine v1.1.3 (PCE Emulator)",
+                    "downloads": ["http://www.magicengine.com/files/magicengine113.dmg",""],
+                    "filename": "magicengine113.dmg",
+                    "installer": "installMagicEngine"
+                }
+
+            },
+            "installOptions": {
+                "all": {
+                    "description" : "Install everything",
+                    "list": {
+                        "magicengine": true,
+                        "buildscripts": true,
+                        "sublime": true,
+                        "pceas": true
+                    }
+                },
+                "skip_sublime": {
+                    "description" : "Install everything but Sublime Text 2",
+                    "list": {
+                        "magicengine": true,
+                        "buildscripts": true,
+                        "pceas": true
+                    }
+                }
+            }
+        }
+    }
+}
