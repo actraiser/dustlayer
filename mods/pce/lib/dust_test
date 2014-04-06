@@ -44,7 +44,7 @@ dust.test.modDependencies = function modDependencies(){
 
     dust.shell.test('-e', process.env['HOME'] + "/Library/Application Support/Sublime Text 2/Packages/User/6502 Assembly (DASM).sublime-settings") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
     dust.color.yellow();
-    console.log("6502 Syntax Highlighting Configuration for Sublime Text 2");
+    console.log("Modified 6502 Syntax Highlighting Configuration for Sublime Text 2");
 
     dust.shell.test('-e', process.env['HOME'] + "/Library/Application Support/Sublime Text 2/Packages/User/PCE-HuC6280.sublime-build") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
     dust.color.yellow();
