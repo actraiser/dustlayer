@@ -32,7 +32,6 @@ exports.installStatus = function(success){
 
 exports.removeTemporaryDirectory = function(){
     process.stdout.write('removing temporary directory ');
-    return
     if (dust.shell.test("-d", dust.shell.env['HOME'] + "/temp_dust_compile")){
 	    dust.shell.exec('rm -rf "$HOME/temp_dust_compile"', {silent:dust.silent});
 	}
