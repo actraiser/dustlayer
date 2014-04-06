@@ -22,21 +22,22 @@
                 "huc" : {
                     "directory": "tools/huc 3.21",
                     "installer": "installHucTools"
-                },
-                "magicengine" : {
-                    "directory": "tools/magic-engine 1.1.3",
-                    "installer": "installMagicEngine"
                 }
             },
             "externals": {
                 "sublime": {
                     "name": "Sublime Text 2 v2.0.2 (Text Editor)",
-                    "downloads": ["https://www.dropbox.com/s/76jsbmlz6l7ls6m/Sublime%20Text%202.0.2.dmg",
-                                  "http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.2.dmg"],
+                    "downloads": ["https://www.dropbox.com/s/76jsbmlz6l7ls6m/Sublime%20Text%202.0.2.dmg"],
                     "filename": "Sublime Text 2.0.2.dmg",
                     "installer": "installSublimeText",
                     "postinstaller": "postInstallSublimeText",
                     "directory": "configurationSublime"
+                },
+                "magicengine": {
+                    "name": "Magic-Engine 1.1.3 (PCE Emulator)",
+                    "downloads": ["https://www.dropbox.com/s/fcypy1txv5j9ras/magicengine113.dmg"],
+                    "filename": "magicengine113.dmg",
+                    "installer": "installMagicEngine"
                 }
             },
             "installOptions": {

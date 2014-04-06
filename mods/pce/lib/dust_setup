@@ -131,7 +131,7 @@ function showOptionsMac(){
 }
 
 function installHucTools(workdir,bundledir){
-    process.stdout.write('installing huc ');
+    process.stdout.write('installing huc tools');
     dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/" + bundledir, {silent:dust.silent});
     dust.shell.cd(workdir);
     dust.shell.exec("make", {silent:dust.silent});
@@ -146,8 +146,6 @@ function installHucTools(workdir,bundledir){
 
 
 function installCompileScripts(workdir,bundledir){
-    console.log("CompileScripts Installer TODO");
-    return;
     process.stdout.write('installing build scripts for 6502 and BASIC ');
     dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/" + bundledir, {silent:dust.silent});
     dust.shell.cd(workdir);
@@ -158,8 +156,6 @@ function installCompileScripts(workdir,bundledir){
 
 function installSublimeText(filename){
     console.log("Install sublime Todo");
-    return;
-
     process.stdout.write('installing Sublime Text 2.0.3 ');
     dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/", {silent:dust.silent});
     dust.externals.download('mac', dust.config.mod.setup.mac.externals.sublime.downloads[0], filename,true);
@@ -192,9 +188,6 @@ function postInstallSublimeText(workdir,bundledir){
 }
 
 function installMagicEngine(filename){
-    console.log("Magic Engine Installer TODO");
-    return;
-
     process.stdout.write('installing Magic Engine 1.1.3 ');
     dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/", {silent:dust.silent});
     dust.externals.download('mac', dust.config.mod.setup.mac.externals.magicengine.downloads[0], filename,true);
