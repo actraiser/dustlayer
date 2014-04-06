@@ -155,8 +155,7 @@ function installCompileScripts(workdir,bundledir){
 }
 
 function installSublimeText(filename){
-    console.log("Install sublime Todo");
-    process.stdout.write('installing Sublime Text 2.0.3 ');
+    process.stdout.write('installing Sublime Text 2 ');
     dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/", {silent:dust.silent});
     dust.externals.download('mac', dust.config.mod.setup.mac.externals.sublime.downloads[0], filename,true);
     process.stdout.write('installing ');
