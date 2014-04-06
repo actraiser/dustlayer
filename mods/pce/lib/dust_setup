@@ -146,11 +146,11 @@ function installHucTools(workdir,bundledir){
 
 
 function installCompileScripts(workdir,bundledir){
-    process.stdout.write('installing build scripts for 6502 and BASIC ');
+    process.stdout.write('installing build scripts for HuC6280 and C ');
     dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/" + bundledir, {silent:dust.silent});
     dust.shell.cd(workdir);
     dust.shell.exec('sudo cp -v "assemble_pceas" "/usr/local/bin"', {silent:dust.silent});
-    dust.shell.exec('sudo cp -v "assemble_huc" "/usr/local/bin"', {silent:dust.silent});
+    dust.shell.exec('sudo cp -v "compile_huc" "/usr/local/bin"', {silent:dust.silent});
     dust.setup.installStatus(true);
 }
 
@@ -162,7 +162,7 @@ function installSublimeText(filename){
     process.stdout.write('installing ');
 
     dust.shell.exec('hdiutil attach "$HOME/temp_dust_compile/' + filename +'"', {silent:dust.silent});
-    dust.shell.exec('cp -R -v "/Volumes/Sublime Text 2/Sublime Text 2.app" "/Volumes/Sublime Text 2/Applications"', {silent:dust.silent});
+    dust.shell.exec('cp -R -v "/Volumes/Sublime Text 2/Sublime Text 2.app" "/Applications"', {silent:dust.silent});
     dust.shell.exec('hdiutil detach "/Volumes/Sublime Text 2"', {silent:dust.silent});
     dust.setup.installStatus(true);
 }
