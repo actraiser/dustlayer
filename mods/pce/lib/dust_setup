@@ -130,17 +130,19 @@ function showOptionsMac(){
 
 }
 
-function installPceas(workdir,bundledir){
-    console.log("PCEAS Installer TODO");
-    return;
-    process.stdout.write('installing acme ');
+function installHucTools(workdir,bundledir){
+    process.stdout.write('installing huc ');
     dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/" + bundledir, {silent:dust.silent});
     dust.shell.cd(workdir);
-    dust.shell.exec('make', {silent:dust.silent});
-    dust.shell.exec('sudo make install', {silent:dust.silent});
+    dust.shell.exec("make", {silent:dust.silent});
+    dust.shell.exec('sudo cp -v "bin/huc" "/usr/local/bin"', {silent:dust.silent});
+    dust.shell.exec('sudo cp -v "bin/isolink" "/usr/local/bin"', {silent:dust.silent});
+    dust.shell.exec('sudo cp -v "bin/nesasm" "/usr/local/bin"', {silent:dust.silent});
+    dust.shell.exec('sudo cp -v "bin/pceas" "/usr/local/bin"', {silent:dust.silent});
+    dust.shell.exec('sudo cp -v "bin/pcxtool" "/usr/local/bin"', {silent:dust.silent});
+
     dust.setup.installStatus(true);
 }
-
 
 
 function installCompileScripts(workdir,bundledir){
@@ -149,8 +151,8 @@ function installCompileScripts(workdir,bundledir){
     process.stdout.write('installing build scripts for 6502 and BASIC ');
     dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/" + bundledir, {silent:dust.silent});
     dust.shell.cd(workdir);
-    dust.shell.exec('sudo cp -v "assemble_6502" "/usr/local/bin"', {silent:dust.silent});
-    dust.shell.exec('sudo cp -v "tokenize_basic" "/usr/local/bin"', {silent:dust.silent});
+    dust.shell.exec('sudo cp -v "assemble_pceas" "/usr/local/bin"', {silent:dust.silent});
+    dust.shell.exec('sudo cp -v "assemble_huc" "/usr/local/bin"', {silent:dust.silent});
     dust.setup.installStatus(true);
 }
 
@@ -158,7 +160,7 @@ function installSublimeText(filename){
     console.log("Install sublime Todo");
     return;
 
-    process.stdout.write('installing Sublime Text 2 ');
+    process.stdout.write('installing Sublime Text 2.0.3 ');
     dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/", {silent:dust.silent});
     dust.externals.download('mac', dust.config.mod.setup.mac.externals.sublime.downloads[0], filename,true);
     process.stdout.write('installing ');
@@ -193,14 +195,14 @@ function installMagicEngine(filename){
     console.log("Magic Engine Installer TODO");
     return;
 
-    process.stdout.write('installing Sublime Text 2 ');
+    process.stdout.write('installing Magic Engine 1.1.3 ');
     dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/", {silent:dust.silent});
-    dust.externals.download('mac', dust.config.mod.setup.mac.externals.sublime.downloads[0], filename,true);
+    dust.externals.download('mac', dust.config.mod.setup.mac.externals.magicengine.downloads[0], filename,true);
     process.stdout.write('installing ');
 
     dust.shell.exec('hdiutil attach "$HOME/temp_dust_compile/' + filename +'"', {silent:dust.silent});
-    dust.shell.exec('cp -R -v "/Volumes/Sublime Text 2/Sublime Text 2.app" "/Volumes/Sublime Text 2/Applications"', {silent:dust.silent});
-    dust.shell.exec('hdiutil detach "/Volumes/Sublime Text 2"', {silent:dust.silent});
+    dust.shell.exec('cp -R -v "/Volumes/MagicEngine/MagicEngine.app" "/Applications"', {silent:dust.silent});
+    dust.shell.exec('hdiutil detach "/Volumes/MagicEngine"', {silent:dust.silent});
     dust.setup.installStatus(true);
 }
 

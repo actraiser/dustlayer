@@ -38,10 +38,10 @@
             },
             "externals": {
                 "sublime": {
-                    "name": "Sublime Text 2 v2.0.1 (Text Editor)",
-                    "downloads": ["http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1.dmg",
-                                  "https://www.dropbox.com/s/941yqzlgub88cth/Sublime%20Text%202.0.1.dmg"],
-                    "filename": "Sublime Text 2.0.1.dmg",
+                    "name": "Sublime Text 2 v2.0.2 (Text Editor)",
+                    "downloads": ["https://www.dropbox.com/s/76jsbmlz6l7ls6m/Sublime%20Text%202.0.2.dmg",
+                                  "http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.2.dmg"],
+                    "filename": "Sublime Text 2.0.2.dmg",
                     "installer": "installSublimeText",
                     "postinstaller": "postInstallSublimeText",
                     "directory": "configurationSublime"

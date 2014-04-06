@@ -1,0 +1,71 @@
+#!/usr/bin/env node
+var dust = require('../../../bin/dust');
+
+dust.test.modDependencies = function modDependencies(){
+    console.log("Tools which are installed and configured by 'dust'");
+    console.log("--------------------------------------------------");
+    dust.color.reset();
+
+    dust.shell.which('pceas') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("PCEAS PC-Engine Assembler");
+
+    dust.shell.which('huc') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("HUC PC-Engine C-Compiler");
+
+    dust.shell.test('-e', '/usr/local/bin/assemble_pceas') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("pceas build script invoked from shell or IDE");
+
+    dust.shell.test('-e', '/usr/local/bin/assemble_huc') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("huc build script invoked from shell or IDE");
+
+    dust.color.reset();
+    dust.color.bold();
+    console.log("");
+    console.log("Optional tools which 'dust' offers to install and to configure");
+    console.log("--------------------------------------------------------------");
+    dust.color.reset();
+
+    dust.shell.test('-e', '/Applications/Sublime Text 2.app') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("Sublime Text 2 - the popular editor for Mac OSX");
+
+    dust.shell.test('-e', '/Applications/MagicEngine.app') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("Magic-Engine - the popular PC-Engine/TurboGrafx Emulator");
+
+
+    dust.shell.test('-d', process.env['HOME'] + "/Library/Application Support/Sublime Text 2/Packages/6502asm.tmbundle") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("6502 Syntax Highlighting for Sublime Text 2");
+
+    dust.shell.test('-e', process.env['HOME'] + "/Library/Application Support/Sublime Text 2/Packages/User/6502 Assembly (DASM).sublime-settings") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("6502 Syntax Highlighting Configuration for Sublime Text 2");
+
+    dust.shell.test('-e', process.env['HOME'] + "/Library/Application Support/Sublime Text 2/Packages/User/C64-6502.sublime-build") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("6502 Build System for Sublime Text 2");
+
+    dust.shell.test('-d', process.env['HOME'] + "/Library/Application Support/Sublime Text 2/Packages/asp.vb.net.tmbundle") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("BASIC Highlighting for Sublime Text 2");
+
+    dust.shell.test('-e', process.env['HOME'] + "/Library/Application Support/Sublime Text 2/Packages/User/ASP.sublime-settings") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("BASIC Syntax Highlighting Configuration for Sublime Text 2");
+
+    dust.shell.test('-e', process.env['HOME'] + "/Library/Application Support/Sublime Text 2/Packages/User/C64-BASIC.sublime-build") ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("BASIC Build System for Sublime Text 2");
+
+    dust.shell.test('-e', '/usr/local/bin/sublime') ? dust.test.okay('[installed] ') : dust.test.fail('[not found] ');
+    dust.color.yellow();
+    console.log("a terminal shortcut that launches Sublime Text 2");
+
+    dust.color.reset();
+    console.log("");
+}

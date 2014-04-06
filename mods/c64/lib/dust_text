@@ -5,7 +5,7 @@ dust.text.displayOutroText = function displayOutroText(){
     console.log("");
     console.log("#######################################################");
     console.log("#                                                     #");
-    console.log("#     Installation is completed! Congratulations!     #");
+    console.log("# Installation for C64 Mod completed! Congratulations!#");
     console.log("#                                                     #");
     console.log("#    use 'dust test' to check installation status.    #");
     console.log("#                                                     #");

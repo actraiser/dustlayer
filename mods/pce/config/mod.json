@@ -19,28 +19,25 @@
                     "directory": "compileScripts",
                     "installer": "installCompileScripts"
                 },
-                "pceas" : {
-                    "directory": "<todo>",
-                    "installer": "installPceas"
+                "huc" : {
+                    "directory": "tools/huc 3.21",
+                    "installer": "installHucTools"
+                },
+                "magicengine" : {
+                    "directory": "tools/magic-engine 1.1.3",
+                    "installer": "installMagicEngine"
                 }
             },
             "externals": {
                 "sublime": {
-                    "name": "Sublime Text 2 v2.0.1 (Text Editor)",
-                    "downloads": ["http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1.dmg",
-                                  "https://www.dropbox.com/s/941yqzlgub88cth/Sublime%20Text%202.0.1.dmg"],
-                    "filename": "Sublime Text 2.0.1.dmg",
+                    "name": "Sublime Text 2 v2.0.2 (Text Editor)",
+                    "downloads": ["https://www.dropbox.com/s/76jsbmlz6l7ls6m/Sublime%20Text%202.0.2.dmg",
+                                  "http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.2.dmg"],
+                    "filename": "Sublime Text 2.0.2.dmg",
                     "installer": "installSublimeText",
                     "postinstaller": "postInstallSublimeText",
                     "directory": "configurationSublime"
-                },
-                "magicengine": {
-                    "name": "Magic Engine v1.1.3 (PCE Emulator)",
-                    "downloads": ["http://www.magicengine.com/files/magicengine113.dmg",""],
-                    "filename": "magicengine113.dmg",
-                    "installer": "installMagicEngine"
                 }
-
             },
             "installOptions": {
                 "all": {
@@ -49,7 +46,7 @@
                         "magicengine": true,
                         "buildscripts": true,
                         "sublime": true,
-                        "pceas": true
+                        "huc" : true
                     }
                 },
                 "skip_sublime": {
@@ -57,7 +54,7 @@
                     "list": {
                         "magicengine": true,
                         "buildscripts": true,
-                        "pceas": true
+                        "huc" : true
                     }
                 }
             }
