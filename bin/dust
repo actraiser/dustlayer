@@ -7,7 +7,7 @@
 *                                   *
 *************************************/
 
-var silent = false;
+var silent = true;
 exports.silent = silent;
 
 var fs = require('fs');
