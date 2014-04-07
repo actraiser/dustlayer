@@ -144,6 +144,15 @@ function installHucTools(workdir,bundledir){
     dust.setup.installStatus(true);
 }
 
+function configureHucTools(workdir,bundledir){
+    process.stdout.write('configuring Huc Tools ');
+    dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/" + bundledir, {silent:dust.silent});
+    dust.shell.cd(workdir);
+    dust.shell.exec('sudo cp -v -R "huc" "/usr/local/include"', {silent:dust.silent});
+    dust.shell.exec('sudo cp -v -R "example_source" ' + dust.shell.env['HOME'] , {silent:dust.silent});
+    dust.shell.exec("grep -q 'export PCE_INCLUDE=/usr/local/include/huc/include/pce' ~/.bash_profile || echo 'export PCE_INCLUDE=/usr/local/include/huc/include/pce' >> ~/.bash_profile");
+    dust.setup.installStatus(true);   
+}
 
 function installCompileScripts(workdir,bundledir){
     process.stdout.write('installing build scripts for HuC6280 and C ');
@@ -151,6 +160,7 @@ function installCompileScripts(workdir,bundledir){
     dust.shell.cd(workdir);
     dust.shell.exec('sudo cp -v "assemble_pceas" "/usr/local/bin"', {silent:dust.silent});
     dust.shell.exec('sudo cp -v "compile_huc" "/usr/local/bin"', {silent:dust.silent});
+
     dust.setup.installStatus(true);
 }
 
@@ -194,6 +204,7 @@ function installMagicEngine(filename){
     dust.shell.exec('hdiutil detach "/Volumes/MagicEngine"', {silent:dust.silent});
     dust.setup.installStatus(true);
 }
+
 
 
 function cloneMac(){

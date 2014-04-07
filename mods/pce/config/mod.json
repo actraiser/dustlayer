@@ -22,6 +22,10 @@
                 "huc" : {
                     "directory": "tools/huc 3.21",
                     "installer": "installHucTools"
+                },
+                "confighuc" : {
+                    "directory": "tools/huc 3.21",
+                    "installer": "configureHucTools"
                 }
             },
             "externals": {
@@ -47,7 +51,8 @@
                         "magicengine": true,
                         "buildscripts": true,
                         "sublime": true,
-                        "huc" : true
+                        "huc" : true,
+                        "confighuc" : true
                     }
                 },
                 "skip_sublime": {
@@ -55,7 +60,8 @@
                     "list": {
                         "magicengine": true,
                         "buildscripts": true,
-                        "huc" : true
+                        "huc" : true,
+                        "confighuc" : true
                     }
                 }
             }
