@@ -20,7 +20,7 @@
                     "installer": "installCompileScripts"
                 },
                 "huc" : {
-                    "directory": "tools/huc 3.21",
+                    "directory": "tools/huc 3.21/src",
                     "installer": "installHucTools"
                 },
                 "confighuc" : {

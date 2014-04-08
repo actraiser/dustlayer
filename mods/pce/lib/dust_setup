@@ -135,12 +135,7 @@ function installHucTools(workdir,bundledir){
     dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/" + bundledir, {silent:dust.silent});
     dust.shell.cd(workdir);
     dust.shell.exec("make", {silent:dust.silent});
-    dust.shell.exec('sudo cp -v "bin/huc" "/usr/local/bin"', {silent:dust.silent});
-    dust.shell.exec('sudo cp -v "bin/isolink" "/usr/local/bin"', {silent:dust.silent});
-    dust.shell.exec('sudo cp -v "bin/nesasm" "/usr/local/bin"', {silent:dust.silent});
-    dust.shell.exec('sudo cp -v "bin/pceas" "/usr/local/bin"', {silent:dust.silent});
-    dust.shell.exec('sudo cp -v "bin/pcxtool" "/usr/local/bin"', {silent:dust.silent});
-
+    dust.shell.exec('sudo cp -v "../bin/*" "/usr/local/bin"', {silent:dust.silent});
     dust.setup.installStatus(true);
 }
 
