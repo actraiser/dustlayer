@@ -30,7 +30,7 @@ dust.cmd
 
 /*
 
-// clone tools repository 
+// clone tools repository
 dust.cmd
   .command('clone')
   .description('clones the bundled tools repository for the selected mod')
@@ -123,6 +123,7 @@ function setMod(mod){
       dust.fs.writeFileSync(path, JSON.stringify(modifiedConfig, null, 4));
       // calls dust again to show the proper info on the active mod
       console.log("restarting dust to reflect changes...");
+      dust.shell.exec("clear");
       dust.shell.exec('dust');
       dust.shell.exit(0);
     }
@@ -153,7 +154,7 @@ function tutorials(){
   console.log ("git not set up correctly, please install git");
   dust.color.reset();
   dust.shell.exit(1);
- } 
+ }
   console.log('Listing available Tutorial Code' );
   dust.tutorials.list();
 }
