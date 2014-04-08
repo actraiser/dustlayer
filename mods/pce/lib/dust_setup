@@ -4,7 +4,7 @@ var savePWD = process.env['HOME'];
 
 dust.setup.clone = {
     "mac": function(){
-        cloneMac();    
+        cloneMac();
     }
 }
 
@@ -16,7 +16,7 @@ dust.setup.install = {
         },
         "run": function(){
             runInstallMac();
-        }    
+        }
     }
 }
 
@@ -110,8 +110,8 @@ function showOptionsMac(){
             options[i] = [];
             options[i]['key'] = key;
             options[i]['description'] = combinations[key]['description'];
-            console.log(i+". " + options[i]['description']); 
-            i++;        
+            console.log(i+". " + options[i]['description']);
+            i++;
         }
 
     dust.cmd.prompt('Choice: ', function(choice){
@@ -150,8 +150,8 @@ function configureHucTools(workdir,bundledir){
     dust.shell.cd(workdir);
     dust.shell.exec('sudo cp -v -R "huc" "/usr/local/include"', {silent:dust.silent});
     dust.shell.exec('sudo cp -v -R "example_source" ' + dust.shell.env['HOME'] , {silent:dust.silent});
-    dust.shell.exec("grep -q 'export PCE_INCLUDE=/usr/local/include/huc/include/pce' ~/.bash_profile || echo 'export PCE_INCLUDE=/usr/local/include/huc/include/pce' >> ~/.bash_profile");
-    dust.setup.installStatus(true);   
+    dust.shell.exec('./set_path');
+    dust.setup.installStatus(true);
 }
 
 function installCompileScripts(workdir,bundledir){
@@ -183,7 +183,7 @@ function postInstallSublimeText(workdir,bundledir){
         dust.shell.cd(workdir);
         dust.shell.exec('sudo mv -v "Sublime Text 2/sublime" "/usr/local/bin"', {silent:dust.silent});
         dust.shell.exec('mkdir -p "$HOME/Library/Application Support/Sublime Text 2/Packages"', {silent:dust.silent});
-        dust.shell.exec('cp -R -v "Sublime Text 2/" "$HOME/Library/Application Support/Sublime Text 2/Packages"', {silent:dust.silent}); 
+        dust.shell.exec('cp -R -v "Sublime Text 2/" "$HOME/Library/Application Support/Sublime Text 2/Packages"', {silent:dust.silent});
         dust.setup.installStatus(true);
     }
     else {
