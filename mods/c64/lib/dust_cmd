@@ -1,81 +1,90 @@
 #!/usr/bin/env node
+
 var dust = require('../../../bin/dust');
 
 
 // create skeletons for ASM or BASIC projects
 dust.cmd
-  .command('create <directory>')
-  .description('create a new project from template into a directory')
-  .action(function(){
-    createFromTemplate(dust.cmd.args);
-  });
+    .command('create <directory>')
+    .description('create a new project from template into a directory')
+    .action(function() {
+        createFromTemplate(dust.cmd.args);
+    });
 
 
 
-// compile ASM 
+// compile ASM
 dust.cmd
-  .command('compile [path]')
-  .description('assemble dust.cmd, create c64 executable and run it')
-  .action(function(){
-    compile(dust.cmd.args);
-  });
+    .command('compile [path]')
+    .description('assemble dust.cmd, create c64 executable and run it')
+    .action(function() {
+        compile(dust.cmd.args);
+    });
 
 
 
 /**************************************
-*     function to exec                *
-***************************************/
+ *     function to exec                *
+ ***************************************/
 
-function compile(args){
- if (!dust.shell.test('-e', '/usr/local/bin/assemble_6502')) {
-  dust.color.red().bold();
-  console.log ("assembler not set up correctly, please do dust setup");
-  dust.color.reset();
-  dust.shell.exit(1);
- } 
+function compile(args) {
 
- if (args[0] === undefined){
-   path = process.env['PWD'];
-
-     if (dust.shell.test('-e', path + '/index.a')) {
-      console.log('index.a found - assembling 6502 code.');
-       dust.shell.exec("/usr/local/bin/assemble_6502 " + "\"" + path + "/index.a\"");
-      dust.shell.exit(0);
+    var targetFile = "";
+    if (!dust.shell.test('-e', '/usr/local/bin/assemble_6502')) {
+        dust.color.red().bold();
+        console.log("assembler not set up correctly, please do dust setup");
+        dust.color.reset();
+        dust.shell.exit(1);
     }
 
-    if (dust.shell.test('-e', path + '/index.asm')) {
-        console.log('index.asm found - assembling 6502 code.');
-        dust.shell.exec("/usr/local/bin/assemble_6502 " + "\"" + path + "/index.asm\"");
-     dust.shell.exit(0);
-     }
-   dust.color.red().bold();
-   console.log("Did not find any index.a or index.asm file to compile");
-   dust.color.reset();
-   dust.shell.exit(1);
- }
+    if (args[0] === undefined) {
+        path = process.env['PWD'];
 
-    if (!dust.shell.test('-e', args[0])) {
-        console.log('given file does not exist.');
-     dust.shell.exit(1);
-     } else {
-         path = process.env['PWD'];
-         if (args[0].match(process.env['PWD'])){
-            path = ""; 
-         }
-         dust.shell.exec("/usr/local/bin/assemble_6502 " + "\"" + path + "/" + args[0] + "\"");
+        if (dust.shell.test('-e', path + '/index.a')) {
+            targetFile = "index.a";
+        } else if (dust.shell.test('-e', path + '/index.asm')) {
+            targetFile = "index.asm";
+        }
+        if (targetFile == "") {
+            dust.color.red().bold();
+            console.log("Did not find any index.a or index.asm file to compile");
+            dust.color.reset();
+            dust.shell.exit(1);
+        }
+    } else {
+
+        if (!dust.shell.test('-e', args[0])) {
+            console.log('given file does not exist.');
+            dust.shell.exit(1);
+        } else {
+            targetFile = args[0]
+            path = process.env['PWD'];
+            if (args[0].match(process.env['PWD'])) {
+                path = "";
+            }
+        }
+    }
+    // Execute compiler
+    console.log(targetFile + ' found - assembling 6502 code.');
+    dust.shell.exec("/usr/local/bin/assemble_6502 " + "\"" + path + "/" + targetFile + "\"");
+    var out = dust.shell.exit(0);
+    if (out.output.search("Error") > -1) {
+          dust.shell.exit(1);
+    }
+    else {
           dust.shell.exit(0);
-     }
+    }
 }
 
-function createFromTemplate(args){
-  if (!dust.shell.which('git')) {
-  dust.color.red().bold();
-  console.log ("git not set up correctly, please install git");
-  dust.color.reset();
-  dust.shell.exit(1);
- } 
- if (args.length > 0){
-     console.log('Listing available Templates' );
-     dust.templates.list(args[0]);
- }
+function createFromTemplate(args) {
+    if (!dust.shell.which('git')) {
+        dust.color.red().bold();
+        console.log("git not set up correctly, please install git");
+        dust.color.reset();
+        dust.shell.exit(1);
+    }
+    if (args.length > 0) {
+        console.log('Listing available Templates');
+        dust.templates.list(args[0]);
+    }
 }
