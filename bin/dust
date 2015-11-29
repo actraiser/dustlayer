@@ -27,13 +27,7 @@ var config = {
             "systemName": "Commodore C64",
             "tutorialsIdentifier": "dust-tutorial-c64",
             "templatesIdentifier": "dust-template-c64"
-            },
-        "pce": {
-            "systemName": "PC-Engine/TurboGrafx",
-            "tutorialsIdentifier": "dust-tutorial-pce",
-            "templatesIdentifier": "dust-template-pce"
             }
-
     }
 }
 
