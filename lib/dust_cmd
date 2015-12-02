@@ -6,7 +6,7 @@ var dust = require('../bin/dust');
 ***************************************/
 
 dust.cmd
-    .version('0.6.0')
+    .version('0.5.2')
     .usage('<command> [arguments]');
 
 
@@ -26,18 +26,6 @@ dust.cmd
   .action(function(){
     listMods();
   });
-
-
-/*
-
-// clone tools repository 
-dust.cmd
-  .command('clone')
-  .description('clones the bundled tools repository for the selected mod')
-  .action(function(){
-    clone();
-  });
-*/
 
 // setup tools
 dust.cmd

@@ -16,9 +16,8 @@ exports.fs = fs;
 var shell = require('shelljs');
 exports.shell = shell;
 
-activeMod = require(process.env['HOME'] + "/.dust.json").activeMod;
-
-
+// Standard Config File to be placed in Home Directory
+activeMod = "c64";
 var config = {
 	"activeMod" : activeMod,
 	"dustLogo": true,
@@ -31,9 +30,30 @@ var config = {
     }
 }
 
+
+/*
+* Try to find the config file for dustlayer or create if absent
+*/
+
+try {
+    // Query the entry
+    configFile = process.env['HOME'] + "/.dust.json";
+    stats = fs.lstatSync(configFile);
+    // File is found, let's use the activeMod from the config file
+    activeMod = require(process.env['HOME'] + "/.dust.json").activeMod;
+}
+catch (e) {
+    console.log("Config File not found - creating one in ~/.dust.json");
+  fs.writeFile(configFile, JSON.stringify(config,null, 4), function (err) {
+        if (err) throw err;
+        console.log("Started for the first time, created config file.");
+    });
+
+
+}
+
+// make the config available to DUST
 exports.config = config;
-
-
 
 var cmd = require('commander');
 exports.cmd = cmd;
