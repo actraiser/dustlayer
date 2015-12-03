@@ -1,30 +1,32 @@
 #!/usr/bin/env node
 var dust = require('../bin/dust');
 
-// require modules to startup 'dust'
+// set up active mod from config file (default: c64)
 dust.config.mod = require("../mods/" + dust.config.activeMod + '/config/mod.json');
 
+// get texts used for this mod
 require("../mods/" + dust.config.activeMod + '/lib/dust_text');
 
 /* Initial Message */
-//dust.shell.exec("clear");
+dust.shell.exec("clear");
 
+// show Dustlayer logo unless disabled by configuration
 if (dust.config.dustLogo === true) {
     dust.text.dustLogo();
 }
+// show welcome message and version number
 dust.text.welcomeMessage(dust.env.operatingSystem+ " " + dust.env.osVersion, dust.env.dustVersion);
 
-
-// modded tests
+// include modded tests
 require("../mods/" + dust.config.activeMod + '/lib/dust_test');
 
-// modded setup
+// include modded setup
 require("../mods/" + dust.config.activeMod + '/lib/dust_setup');
 
-// modded commands
+// include modded commands
 require("../mods/" + dust.config.activeMod + '/lib/dust_cmd');
 
-// modded commands
+// include modded templates
 require("../mods/" + dust.config.activeMod + '/lib/dust_templates');
 
 dust.cmd.parse(process.argv);

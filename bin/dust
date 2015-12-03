@@ -3,20 +3,23 @@
 
 /************************************
 *                                   *
-*  main binary - sets up defaults   *
+*          main executable          *
 *                                   *
 *************************************/
 
+// flag to indicate if installation is verbose
 var silent = true;
 exports.silent = silent;
 
+// file system access
 var fs = require('fs');
 exports.fs = fs;
 
+// shell commands access
 var shell = require('shelljs');
 exports.shell = shell;
 
-// Standard Config File to be placed in Home Directory
+// default config template to be installed on first use
 activeMod = "c64";
 var config = {
 	"activeMod" : activeMod,
@@ -30,67 +33,81 @@ var config = {
     }
 }
 
-
-/*
-* Try to find the config file for dustlayer or create if absent
-*/
-
+// Look for existing config file 
+// Create file if absent
 try {
-    // Query the entry
+    // config file location
     configFile = process.env['HOME'] + "/.dust.json";
+    // query for the file
     stats = fs.lstatSync(configFile);
-    // File is found, let's use the activeMod from the config file
+    // if no error, file was found. Load active mod
     activeMod = require(process.env['HOME'] + "/.dust.json").activeMod;
 }
 catch (e) {
+    // file was not found
     console.log("Config File not found - creating one in ~/.dust.json");
-  fs.writeFile(configFile, JSON.stringify(config,null, 4), function (err) {
+    // create the file using the default template and set activeMod to c65
+    fs.writeFile(configFile, JSON.stringify(config,null, 4), function (err) {
+        // throw error if file can not be written
         if (err) throw err;
+        // prompt a hint that we installed the config file
         console.log("Started for the first time, created config file.");
     });
-
-
 }
 
-// make the config available to DUST
+/************************************
+*                                   *
+*       export sub modules          *
+*                                   *
+*************************************/
+
+
+// current configuration
 exports.config = config;
 
+// allowed DUST commands 
 var cmd = require('commander');
 exports.cmd = cmd;
 require('../lib/dust_cmd');
 
+// Environment checks
 var env = require('../lib/dust_env');
 exports.env = env;
 
+// All text that is outputted by DUST
 var text = require('../lib/dust_text');
 exports.text = text;
 
+// Support for color in terminal
 var ansi = require('ansi');
 var color = ansi(process.stdout);
 exports.color = color;
 
+// Functions to check setup
 var test = require('../lib/dust_test');
 exports.test = test;
 
+// Functions to setup environment and install tools
 var setup = require('../lib/dust_setup');
 exports.setup = setup;
 
+// Access to github repository via Github API
 var github = require('../lib/dust_github');
 exports.github = github;
 
+// Functions to pull Tutorials and Templates
 var tutorials = require('../lib/dust_tutorials');
 exports.tutorials = tutorials;
 
+// progress bar while downloading files from external sources
 var externals = require('../lib/dust_externals')
 exports.externals = externals;
 
+// code templates stub, to be implemented by the active mod
 var templates = require('../lib/dust_templates')
 exports.templates = templates;
 
-/* Set Mod */
-
-
-/* booting 'dust' */
+// boot DUST
 require('../lib/dust_boot');
 
 
