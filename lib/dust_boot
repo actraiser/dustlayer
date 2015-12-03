@@ -1,4 +1,11 @@
 #!/usr/bin/env node
+
+/************************************
+*    while booting include  		*
+*    files required by the mod      *
+*    and parse the user input       *
+*************************************/
+
 var dust = require('../bin/dust');
 
 // set up active mod from config file (default: c64)
