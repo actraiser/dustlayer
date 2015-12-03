@@ -29,6 +29,7 @@ require("../mods/" + dust.config.activeMod + '/lib/dust_cmd');
 // include modded templates
 require("../mods/" + dust.config.activeMod + '/lib/dust_templates');
 
+// parse the command entered by the user
 dust.cmd.parse(process.argv);
 
 

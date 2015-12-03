@@ -3,14 +3,16 @@ var dust = require('../bin/dust');
 
 /**************************************
 *     default commands                *
+*     which are extended by the mod   *
 ***************************************/
 
+// show version information and usage
 dust.cmd
     .version('0.5.2')
     .usage('<command> [arguments]');
 
 
-// set Mode
+// select mod to use with DUST, default is c64
 dust.cmd
   .command('mod <modding>')
   .description("switch modding for 'dust', default: 'c64'")
@@ -19,7 +21,7 @@ dust.cmd
   });
 
 
-// set Mode
+// see available mods to choose from
 dust.cmd
   .command('mods')
   .description("show list of available mods")
@@ -27,7 +29,7 @@ dust.cmd
     listMods();
   });
 
-// setup tools
+// setup environment and install tools
 dust.cmd
   .command('setup [help]')
   .description('setups bundled tools or displays information on the setup')
@@ -54,7 +56,7 @@ dust.cmd
   });
 
 
-// test setup
+// test environment and check for installed tools
 dust.cmd
   .command('test')
   .description('check if everything is installed properly')
@@ -63,7 +65,7 @@ dust.cmd
   });
 
 
-// tutorials list and download
+// show list of available tutorials
 dust.cmd
   .command('tutorials')
   .description('list and download tutorials')

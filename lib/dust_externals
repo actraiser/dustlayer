@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 var dust = require('../bin/dust');
 
+/**************************************
+*     progress bar when downloading   *
+***************************************/
+
 /*
 var externalConfig = dust.config.externals
 

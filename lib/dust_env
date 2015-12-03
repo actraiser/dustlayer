@@ -1,6 +1,11 @@
 #!/usr/bin/env node
 var dust = require('../bin/dust');
 
+/**************************************
+*     get operating system            *
+*     and set DUST version            *
+***************************************/
+
 var operatingSystem = operatingSystem();
 var osVersion = dust.shell.exec("sw_vers -productVersion", {silent:dust.silent}).output;
 var dustVersion = '0.5.2 (2015-12-01)';

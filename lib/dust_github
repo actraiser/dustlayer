@@ -1,6 +1,11 @@
 #!/usr/bin/env node
 var dust = require('../bin/dust');
 
+/**************************************
+*     Setup Github Access             *
+*     Get information of repositories *
+***************************************/
+
 var GitHubApi = require("github");
 var github = new GitHubApi({
     version: "3.0.0",
