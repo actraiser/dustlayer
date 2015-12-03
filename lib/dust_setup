@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 var dust = require('../bin/dust');
 
+/**************************************
+*     check setup progress            *
+*     and glboal clean up methods     *
+***************************************/
 
 exports.compatibilityCheck = function(){
  if (dust.config.mod.support.mac === false){
