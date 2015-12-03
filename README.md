@@ -2,8 +2,10 @@
 
 (c) actraiser/Dustlayer
 
-Dustlayer WHQ: http://dustlayer.com
-Contact: actraiser@dustlayer.com
+ Dustlayer WHQ: http://dustlayer.com
+ Facebook: https://www.facebook.com/dustlayer.c64.coding
+ Twitter: https://twitter.com/actraiser
+ Email: actraiser@dustlayer.com
 
 Dust is part of a bigger project consisting of a blog with coding tutorials and various projects. Check the Website.
 
