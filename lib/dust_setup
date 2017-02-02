@@ -15,7 +15,6 @@ exports.compatibilityCheck = function(){
     dust.color.reset();
     dust.shell.exit(1);
   }
-
 }
 
 exports.installStatus = function(success){
@@ -41,4 +40,3 @@ exports.removeTemporaryDirectory = function(){
 	}
 	dust.setup.installStatus(true);
 }
-

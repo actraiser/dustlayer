@@ -23,7 +23,7 @@
     "programming",
     "setup"
   ],
-    "preferGlobal": true,
+  "preferGlobal": true,
   "dependencies" : {
     "shelljs"   : "0.1.2",
     "commander" : "0.6.1",

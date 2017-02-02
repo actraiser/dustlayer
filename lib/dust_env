@@ -8,7 +8,7 @@ var dust = require('../bin/dust');
 
 var operatingSystem = operatingSystem();
 var osVersion = dust.shell.exec("sw_vers -productVersion", {silent:dust.silent}).output;
-var dustVersion = '0.5.2 (2015-12-01)';
+var dustVersion = '0.5.3 (2016-08-29)'; 
 
 exports.operatingSystem = operatingSystem
 exports.osVersion = osVersion;

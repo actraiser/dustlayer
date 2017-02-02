@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 var dust = require('../bin/dust');
 
-
 exports.dustLogo = function dustLogo(){
     dust.color.bold();
     console.log("");

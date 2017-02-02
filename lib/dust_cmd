@@ -8,7 +8,7 @@ var dust = require('../bin/dust');
 
 // show version information and usage
 dust.cmd
-    .version('0.5.2')
+    .version('0.5.3')
     .usage('<command> [arguments]');
 
 
