@@ -41,9 +41,9 @@ function formatTutorialsList(data){
     dust.color.yellow().bold();
     console.log("Please choose which tutorial code to download: ");
 
-
     dust.cmd.choose(list, function(i){
-        console.log('you chose "%s"', i, list[i]);
+        var choice = i+1;
+        console.log('you chose "%s"', choice, list[i]);
         downloadTutorial(data[i].name);
     });
 

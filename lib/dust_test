@@ -15,7 +15,6 @@ exports.fail = function(text){
     dust.color.reset();
 }
 
-
 exports.all = function (){
     dust.test.defaults();
     dust.test.modDependencies();
@@ -45,5 +44,3 @@ exports.defaults = function defaults(){
 exports.modDependencies = function modDependencies(){
     return;
 }
-
-
