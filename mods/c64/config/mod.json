@@ -46,6 +46,15 @@
                     "postinstaller": "postInstallSublimeText",
                     "directory": "configurationSublime"
                 },
+                "sublime3": {
+                    "name": "Sublime Text 3 v3.2.1 ( > macOS 10.7)",
+                    "downloads": ["https://download.sublimetext.com/Sublime%20Text%20Build%203207.dmg",
+                                  "https://download.sublimetext.com/Sublime%20Text%20Build%203207.dmg"],
+                    "filename": "Sublime Text 3207.dmg",
+                    "installer": "installSublimeText3",
+                    "postinstaller": "postInstallSublimeText3",
+                    "directory": "configurationSublime"
+                },
                 "vice": {
                     "name": "Vice v2.4 (C64 Emulator)",
                     "downloads": ["http://sourceforge.net/projects/vice-emu/files/releases/binaries/macosx/vice-macosx-cocoa-i386+x86_64-10.6-gcc42-2.4.dmg/download",
@@ -57,19 +66,7 @@
             },
             "installOptions": {
                 "all": {
-                    "description" : "Install everything",
-                    "list": {
-                        "acme": true,
-                        "buildscripts": true,
-                        "exomizer": true,
-                        "pucrunch": true,
-                        "sidreloc": true,
-                        "sublime": true,
-                        "vice": true
-                    }
-                },
-                "skip_sublime": {
-                    "description" : "Install everything but Sublime Text 2",
+                    "description" : "Install everything with Sublime Text 3",
                     "list": {
                         "acme": true,
                         "buildscripts": true,
@@ -77,6 +74,33 @@
                         "pucrunch": true,
                         "sidreloc": true,
                         "sublime": false,
+                        "sublime3": true,
+                        "vice": true
+                    }
+                },
+                "legacy": {
+                    "description" : "Install everything with Sublime Text 2",
+                    "list": {
+                        "acme": true,
+                        "buildscripts": true,
+                        "exomizer": true,
+                        "pucrunch": true,
+                        "sidreloc": true,
+                        "sublime": true,
+                        "sublime3": false,
+                        "vice": true
+                    }
+                },
+                "skip_sublime": {
+                    "description" : "Install everything but Sublime Text",
+                    "list": {
+                        "acme": true,
+                        "buildscripts": true,
+                        "exomizer": true,
+                        "pucrunch": true,
+                        "sidreloc": true,
+                        "sublime": false,
+                        "sublime3": false,
                         "vice": true
                     }
                 }
