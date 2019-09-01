@@ -205,6 +205,35 @@ function postInstallSublimeText(workdir,bundledir){
     }
 }
 
+function installSublimeText3(filename){
+    process.stdout.write('installing Sublime Text 3 ');
+    dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/", {silent:dust.silent});
+    dust.externals.download('mac', dust.config.mod.setup.mac.externals.sublime.downloads[0], filename,true);
+    process.stdout.write('installing ');
+
+    dust.shell.exec('hdiutil attach "$HOME/temp_dust_compile/' + filename +'"', {silent:dust.silent});
+    dust.shell.exec('cp -R -v "/Volumes/Sublime Text/Sublime Text.app" "/Volumes/Sublime Text/Applications"', {silent:dust.silent});
+    dust.shell.exec('hdiutil detach "/Volumes/Sublime Text"', {silent:dust.silent});
+    dust.setup.installStatus(true);
+}
+
+function postInstallSublimeText3(workdir,bundledir){
+        process.stdout.write("Copying Sublime Text 3 Configuration ");
+    if (dust.shell.test("-d", "/Applications/Sublime Text.app")){
+        dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/" + bundledir, {silent:dust.silent});
+        dust.shell.cd(workdir);
+        dust.shell.exec('sudo mv -v "Sublime Text/sublime" "/usr/local/bin"', {silent:dust.silent});
+        dust.shell.exec('mkdir -p "$HOME/Library/Application Support/Sublime Text/Packages"', {silent:dust.silent});
+        dust.shell.exec('cp -R -v "Sublime Text/" "$HOME/Library/Application Support/Sublime Text/Packages"', {silent:dust.silent}); 
+        dust.setup.installStatus(true);
+    }
+    else {
+        dust.color.yellow();
+        console.log("sublime not available - no build systems were configured");
+        dust.color.reset();
+    }
+}
+
 function installVice(filename){
     process.stdout.write('installing Vice ');
     dust.shell.cd(dust.shell.env['HOME'] + "/temp_dust_compile/", {silent:dust.silent});
@@ -220,7 +249,6 @@ function installVice(filename){
 
     dust.setup.installStatus(true);
 }
-
 
 function cloneMac(){
   console.log ("");

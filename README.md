@@ -22,7 +22,7 @@ This first version installs and configures the tool chain and helps you to kicks
 		- Vice
 		- Crunchers
 		- and more
-	- Automatic Sublime Installation and Configuration
+	- Automatic Sublime 2 or 3 Installation and Configuration
 		- 6502 and BASIC syntax highlighting
 		- Instangt Build & Run Options for ASM and BASIC projects
 		- Auto-Start in Vice via BASIC loader
