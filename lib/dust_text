@@ -4,13 +4,20 @@ var dust = require('../bin/dust');
 
 exports.dustLogo = function dustLogo(){
     dust.color.bold();
+    dust.color.red()
     console.log("");
     console.log("________                  __   __                             ");
+    dust.color.red()
     console.log("\\______ \\  __ __  _______/  |_|  | _____  ___.__. ___________ ");
+    dust.color.hex('#ff9900')
     console.log(" |    |  \\|  |  \\/  ___/\\   __\\  | \\__  \\<   |  |/ __ \\_  __ \\");
+    dust.color.yellow()
     console.log(" |    `   \\  |  /\\___ \\  |  | |  |__/ __ \\\\___  \\  ___/|  | \\/");
+    dust.color.green()
     console.log("/_______  /____//____  > |__| |____(____  / ____|\\___  >__|   ");
+    dust.color.blue()
     console.log("        \\/           \\/                 \\/\\/         \\/       ");
+    
     console.log("");
     dust.color.reset();
 }
